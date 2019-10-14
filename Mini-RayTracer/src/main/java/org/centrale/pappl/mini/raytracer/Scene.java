@@ -8,7 +8,9 @@ public class Scene {
     private ArrayList<Object> objects;
     private ArrayList<Light> lights;
 
+    @SuppressWarnings("FieldMayBeFinal")
     private Camera camera = new Camera();
+    @SuppressWarnings("FieldMayBeFinal")
     private Raster raster = new Raster();
 
     public static Scene getScene() {
