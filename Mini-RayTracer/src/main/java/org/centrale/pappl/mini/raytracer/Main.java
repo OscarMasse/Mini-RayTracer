@@ -14,18 +14,33 @@ public class Main {
         
         Scene scene = Scene.getScene();
         
+        Raster raster = scene.getRaster();
+        Camera camera = scene.getCamera();
+        
         //Fill objects
         //Fill lights
         
         
         //For each pixel in raster
-            //create ray camera to pixel builtCameraRay()
-            //For each Object in objects
-                //Test for closest intersection: trace() 
-                //if true
-                    //fill pixel with object color at intersection
-                // else
-                    //fill pixel with background color
+        for (int i = 0; i < Raster.WIDTH; i++){
+            for (int j = 0; j < Raster.HEIGHT; j++){
+                Vector3 direction = raster.getOrigin();
+                direction.add(raster.getUx().scalarMultiplication(i));
+                direction.add(raster.getUy().scalarMultiplication(j));
+                
+                Ray ray = new Ray(camera.getPosition(), direction);
+                for (int k = 0; k < scene.getObjects().size(); k++){
+                    //Test for closest intersection: trace() 
+                    //if true
+                        //fill pixel with object color at intersection
+                    // else
+                        //fill pixel with background color
+                }
+                
+                    
+            }
+        }
+            
         
         
     }
