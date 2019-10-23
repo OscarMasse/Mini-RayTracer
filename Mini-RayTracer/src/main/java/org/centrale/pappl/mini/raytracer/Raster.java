@@ -21,9 +21,14 @@ public class Raster {
     private Vector3 origin;
     
     /**
-     * Raster image's diagonal vector
+     * Raster image's horizontal vector
      */
-    private Vector3 diagonal;
+    private Vector3 ux;
+    
+    /**
+     * Raster image's vertical vector
+     */
+    private Vector3 uy;
     
     /**
      * Raster image: board of pixels filled with a color
@@ -49,9 +54,10 @@ public class Raster {
      * @param diagonal
      * @param pixels
      */
-    public Raster(Vector3 origin, Vector3 diagonal, Color [][] pixels){
+    public Raster(Vector3 origin, Vector3 ux, Vector3 uy, Color [][] pixels){
         this.origin = origin;
-        this.diagonal = diagonal;
+        this.ux = ux;
+        this.uy = uy;
         this.pixels = pixels;
     }
     
@@ -60,7 +66,8 @@ public class Raster {
      */
     public Raster() {
         this.origin = new Vector3();
-        this.diagonal = new Vector3();
+        this.ux = new Vector3();
+        this.uy = new Vector3();
         this.pixels = new Color[Raster.HEIGHT][Raster.WIDTH];
     }
     
@@ -74,14 +81,22 @@ public class Raster {
         this.origin = origin;
     }
 
-    public Vector3 getDiagonal() {
-        return diagonal;
+    public Vector3 getUx() {
+        return ux;
     }
 
-    public void setDiagonal(Vector3 diagonal) {
-        this.diagonal = diagonal;
+    public void setUx(Vector3 ux) {
+        this.ux = ux;
     }
 
+    public Vector3 getUy() {
+        return uy;
+    }
+
+    public void setUy(Vector3 uy) {
+        this.uy = uy;
+    }
+    
     public Color[][] getPixels() {
         return pixels;
     }
