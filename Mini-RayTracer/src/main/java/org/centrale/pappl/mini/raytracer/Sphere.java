@@ -15,7 +15,7 @@ public class Sphere extends Object{
     private final Vector3 center;
     private final double radius;
     
-    public Sphere(Vector3 center, int radius){
+    public Sphere(Vector3 center, double radius){
         this.center = center;
         this.radius = radius;
 }
@@ -29,7 +29,6 @@ public class Sphere extends Object{
         
         double tca = cameraCenter.scalarProduct(ray.getDirection());
         tca = tca / ray.getDirection().magnitude();
-        if (tca == 0) return intersection;
         
         double d2 = cameraCenter.scalarProduct(cameraCenter) - tca*tca;
         
@@ -39,7 +38,7 @@ public class Sphere extends Object{
         double distanceToCamera = tca - thc;
         
         Vector3 intersectionDirection = ray.getOrigin();
-        intersectionDirection.add(cameraCenter.scalarMultiplication(distanceToCamera));
+        intersectionDirection.add(ray.getDirection().normalize().scalarMultiplication(distanceToCamera));
         
         intersection = new Vector3(intersectionDirection.scalarProduct(Scene.UX), intersectionDirection.scalarProduct(Scene.UY), intersectionDirection.scalarProduct(Scene.UZ));
         

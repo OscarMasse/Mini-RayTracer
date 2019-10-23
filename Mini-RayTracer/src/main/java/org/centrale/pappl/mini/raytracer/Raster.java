@@ -73,7 +73,7 @@ public class Raster {
         this.pixels = new Color[Raster.WIDTH][Raster.HEIGHT];
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                pixels[i][j] = Color.black;
+                pixels[i][j] = Color.white;
             }
         }
     }
@@ -121,8 +121,8 @@ public class Raster {
                 bufferedImage.setRGB(i, HEIGHT - j - 1, pixels[i][j].getRGB());
             }
         }
-        File outputFile = new File("image.jpg");
-        ImageIO.write(bufferedImage, "jpg", outputFile);
+        File outputFile = new File("image.png");
+        ImageIO.write(bufferedImage, "png", outputFile);
 
     }
 }

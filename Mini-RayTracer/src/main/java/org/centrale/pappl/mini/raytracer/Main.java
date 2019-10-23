@@ -24,7 +24,7 @@ public class Main {
 
         // Fill objects
         Object object = new Sphere(new Vector3(300, 300, 100), 100);
-        object.setColor(Color.RED);
+        object.setColor(Color.BLUE);
         scene.addObject(object);
 
 //        Object object2 = new Sphere(new Vector3(20, 50, 100), 1);
