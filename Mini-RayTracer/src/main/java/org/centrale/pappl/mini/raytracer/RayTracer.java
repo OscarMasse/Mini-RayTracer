@@ -11,7 +11,7 @@ package org.centrale.pappl.mini.raytracer;
  */
 public class RayTracer {
     
-    public void trace (Raster raster, Ray ray){
+    public void trace(Raster raster, Ray ray){
         
     }
 }

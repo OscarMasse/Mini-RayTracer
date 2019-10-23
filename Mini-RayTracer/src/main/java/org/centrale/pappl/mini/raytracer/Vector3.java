@@ -41,16 +41,16 @@ public class Vector3 {
         this.z += vector3.z;
     }
 
-    public Vector3 substract(Vector3 vector3) {
+    public Vector3 subtract(Vector3 vector3) {
         return new Vector3(x - vector3.x, y - vector3.y, z - vector3.z);
     }
 
     public Vector3 normalize() {
-        double lenght = Math.sqrt(scalarProduct(this));
-        if(Math.abs(lenght) == 0) {
+        double length = Math.sqrt(scalarProduct(this));
+        if(Math.abs(length) == 0) {
             return new Vector3();
         }
-        return new Vector3(x/lenght, y/lenght, z/lenght);
+        return new Vector3(x/length, y/length, z/length);
     }
 
     public double scalarProduct(Vector3 vector3) {

@@ -13,6 +13,10 @@ public class Scene {
     @SuppressWarnings("FieldMayBeFinal")
     private Raster raster = new Raster();
 
+    public Scene() {
+        //TODO ...
+    }
+
     public static Scene getScene() {
         if (scene == null) Scene.scene = new Scene();
         return scene;
