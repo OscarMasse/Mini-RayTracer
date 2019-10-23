@@ -67,12 +67,12 @@ public class Raster {
      * Default constructor
      */
     public Raster() {
-        this.origin = new Vector3();
-        this.ux = new Vector3();
-        this.uy = new Vector3();
-        this.pixels = new Color[Raster.HEIGHT][Raster.WIDTH];
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
+        this.origin = new Vector3(0, 0, 50);
+        this.ux = new Vector3(1, 0);
+        this.uy = new Vector3(0, 1);
+        this.pixels = new Color[Raster.WIDTH][Raster.HEIGHT];
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 pixels[i][j] = Color.black;
             }
         }
@@ -116,8 +116,8 @@ public class Raster {
     public void print() throws IOException {
         BufferedImage bufferedImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 bufferedImage.setRGB(i, j, pixels[i][j].getRGB());
             }
         }

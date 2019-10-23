@@ -1,5 +1,6 @@
 package org.centrale.pappl.mini.raytracer;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 public class Scene {
@@ -12,12 +13,13 @@ public class Scene {
     private Raster raster = new Raster();
     
     public final static Vector3 UX = new Vector3(1, 0, 0);
-    public final static Vector3 UY = new Vector3(1, 0, 0);
-    public final static Vector3 UZ = new Vector3(1, 0, 0);
+    public final static Vector3 UY = new Vector3(0, 1, 0);
+    public final static Vector3 UZ = new Vector3(0, 0, 1);
     
 
     public Scene() {
-        //TODO ...
+        objects = new ArrayList<>();
+        lights = new ArrayList<>();
     }
 
     public static Scene getScene() {
@@ -56,6 +58,9 @@ public class Scene {
     public void setRaster(Raster raster) {
         this.raster = raster;
     }
-    
 
+
+    public void addObject(Object object) {
+        objects.add(object);
+    }
 }

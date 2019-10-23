@@ -10,6 +10,10 @@ public abstract class Object {
 
     public abstract Vector3 getNormal(Vector3 position);
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public Color getColor() {
         return this.color;
     }
