@@ -1,6 +1,6 @@
 package org.centrale.pappl.mini.raytracer;
 
-public interface Object {
-    public boolean intersect(Ray ray);
-    public Vector3 getNormal(Vector3 position);
+public abstract class Object {
+    public abstract boolean intersect(Ray ray);
+    public abstract Vector3 getNormal(Vector3 position);
 }
