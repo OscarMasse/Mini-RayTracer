@@ -29,7 +29,7 @@ public class Ray {
      */
     public Ray(Vector3 origin, Vector3 direction){
         this.origin = origin;
-        this.direction = direction;
+        this.direction = direction.normalized();
     }
     
     /**
@@ -46,16 +46,8 @@ public class Ray {
         return origin;
     }
 
-    public void setOrigin(Vector3 origin) {
-        this.origin = origin;
-    }
-
     public Vector3 getDirection() {
         return direction;
-    }
-
-    public void setDirection(Vector3 direction) {
-        this.direction = direction;
     }
     
 }

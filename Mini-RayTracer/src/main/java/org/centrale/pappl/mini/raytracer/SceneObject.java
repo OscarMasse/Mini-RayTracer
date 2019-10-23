@@ -2,11 +2,11 @@ package org.centrale.pappl.mini.raytracer;
 
 import java.awt.*;
 
-public abstract class Object {
+public abstract class SceneObject {
 
     private Color color;
 
-    public abstract Vector3 intersect(Ray ray);
+    public abstract boolean intersect(Ray ray, Vector3 intersection);
 
     public abstract Vector3 getNormal(Vector3 position);
 

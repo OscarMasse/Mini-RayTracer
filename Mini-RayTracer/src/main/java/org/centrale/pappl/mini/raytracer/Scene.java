@@ -1,12 +1,11 @@
 package org.centrale.pappl.mini.raytracer;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 public class Scene {
     private static Scene scene;
 
-    private ArrayList<Object> objects;
+    private ArrayList<SceneObject> sceneObjects;
     private ArrayList<Light> lights;
 
     private Camera camera = Camera.getCamera();
@@ -18,7 +17,7 @@ public class Scene {
     
 
     private Scene() {
-        objects = new ArrayList<>();
+        sceneObjects = new ArrayList<>();
         lights = new ArrayList<>();
     }
 
@@ -27,12 +26,12 @@ public class Scene {
         return scene;
     }
 
-    public ArrayList<Object> getObjects() {
-        return objects;
+    public ArrayList<SceneObject> getSceneObjects() {
+        return sceneObjects;
     }
 
-    public void setObjects(ArrayList<Object> objects) {
-        this.objects = objects;
+    public void setSceneObjects(ArrayList<SceneObject> sceneObjects) {
+        this.sceneObjects = sceneObjects;
     }
 
     public ArrayList<Light> getLights() {
@@ -60,7 +59,7 @@ public class Scene {
     }
 
 
-    public void addObject(Object object) {
-        objects.add(object);
+    public void addObject(SceneObject sceneObject) {
+        sceneObjects.add(sceneObject);
     }
 }

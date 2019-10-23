@@ -67,13 +67,13 @@ public class Raster {
      * Default constructor
      */
     public Raster() {
-        this.origin = new Vector3(0, 0, 50);
+        this.origin = new Vector3(-WIDTH/2, -HEIGHT/2, 1000);
         this.ux = new Vector3(1, 0);
         this.uy = new Vector3(0, 1);
         this.pixels = new Color[Raster.WIDTH][Raster.HEIGHT];
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                pixels[i][j] = Color.white;
+                pixels[i][j] = Color.BLACK;
             }
         }
     }

@@ -23,13 +23,13 @@ public class Main {
         RayTracer rayTracer = new RayTracer();
 
         // Fill objects
-        Object object = new Sphere(new Vector3(300, 300, 100), 100);
-        object.setColor(Color.BLUE);
-        scene.addObject(object);
+        SceneObject sceneObject = new Sphere(new Vector3(300, 800, 1100), 50);
+        sceneObject.setColor(Color.RED);
+        scene.addObject(sceneObject);
 
-//        Object object2 = new Sphere(new Vector3(20, 50, 100), 1);
-//        object2.setColor(Color.BLUE);
-//        scene.addObject(object2);
+        SceneObject sceneObject2 = new Sphere(new Vector3(-500, 100, 1100), 300);
+        sceneObject2.setColor(Color.BLUE);
+        scene.addObject(sceneObject2);
 
         // Fill lights
         

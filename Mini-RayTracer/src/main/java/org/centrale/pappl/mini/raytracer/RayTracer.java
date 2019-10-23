@@ -20,28 +20,29 @@ public class RayTracer {
 
     public void trace(Raster raster, int i, int j){
 
-        Object closestObject = null;
+        SceneObject closestSceneObject = null;
         double shortestDistance = Double.MAX_VALUE;
 
         // Construction of the ray passing through the pixel (i,j)
-        Vector3 direction = raster.getOrigin();
-        direction.add(raster.getUx().scalarMultiplication(i));
-        direction.add(raster.getUy().scalarMultiplication(j));
-        Ray ray = new Ray(Scene.getScene().getCamera().getPosition(), direction);
+        Vector3 direction;
+        direction = raster.getOrigin()
+                .add(raster.getUx().scale(i))
+                .add(raster.getUy().scale(j));
+        Ray ray = new Ray(Scene.getScene().getCamera().getPosition(), direction.subtract(Scene.getScene().getCamera().getPosition()));
 
         // Testing intersection with each object of the scene
-        for (Object object : Scene.getScene().getObjects()) {
-            Vector3 intersectionPoint = object.intersect(ray);
-            if (!intersectionPoint.isNullVector()) {
-                double objectDistance = intersectionPoint.subtract(ray.getDirection()).magnitude();
+        for (SceneObject sceneObject : Scene.getScene().getSceneObjects()) {
+            Vector3 intersectionPoint = new Vector3();
+            if (sceneObject.intersect(ray, intersectionPoint)) {
+                double objectDistance = intersectionPoint.magnitude();
                 if (objectDistance < shortestDistance) {
-                    closestObject = object;
+                    closestSceneObject = sceneObject;
                     shortestDistance = objectDistance;
                 }
             }
         }
-        if (closestObject != null) {
-            raster.colorize(i, j, closestObject.getColor());
+        if (closestSceneObject != null) {
+            raster.colorize(i, j, closestSceneObject.getColor());
 //            closestObject = null;
 //            shortestDistance = Double.MAX_VALUE;
         }
