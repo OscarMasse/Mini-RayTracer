@@ -22,17 +22,12 @@ public class Main {
         // Fill objects
         // Fill lights
         
-        
         // For each pixel in raster
         for (int i = 0; i < Raster.WIDTH; i++){
             for (int j = 0; j < Raster.HEIGHT; j++){
 
                 rayTracer.trace(raster, i, j);
-                    
             }
         }
-            
-        
-        
     }
 }
