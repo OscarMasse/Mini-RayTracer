@@ -51,7 +51,6 @@ public class Raster {
      * Constructor
      * 
      * @param origin
-     * @param diagonal
      * @param pixels
      */
     public Raster(Vector3 origin, Vector3 ux, Vector3 uy, Color [][] pixels){
@@ -101,8 +100,8 @@ public class Raster {
         return pixels;
     }
 
-    public void setPixels(Color[][] pixels) {
-        this.pixels = pixels;
+
+    public void colorize(int i, int j, Color color) {
+        pixels[i][j] = color;
     }
-    
 }

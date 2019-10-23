@@ -61,4 +61,13 @@ public class Vector3 {
         return new Vector3(x*d, y*d, z*d);
     }
 
+    public boolean isNullVector() {
+        if (this.x == 0 && this.y == 0 && this.z == 0) return true;
+        else return false;
+    }
+
+    public double magnitude() {
+        return Math.sqrt(x*x + y*y + z*z);
+    }
+
 }

@@ -11,22 +11,34 @@ package org.centrale.pappl.mini.raytracer;
  */
 public class RayTracer {
 
-    RayTracer(){}
-    
+    public Object closestObject;
+    private double shortestDistance;
+
+    RayTracer(){
+        shortestDistance = Double.MAX_VALUE;
+    }
+
     public void trace(Raster raster, int i, int j){
 
+        // Construction of the ray passing through the pixel (i,j)
         Vector3 direction = raster.getOrigin();
         direction.add(raster.getUx().scalarMultiplication(i));
         direction.add(raster.getUy().scalarMultiplication(j));
-
         Ray ray = new Ray(Scene.getScene().getCamera().getPosition(), direction);
-        for (int k = 0; k < Scene.getScene().getObjects().size(); k++){
-            // Test for closest intersection: trace()
-            // if true
-            // fill pixel with object color at intersection
-            // else
-            // fill pixel with background color
+
+        // Testing intersection with each object of the scene
+        for (Object object : Scene.getScene().getObjects()) {
+            Vector3 intersectionPoint = object.intersect(ray);
+            if (!intersectionPoint.isNullVector()) {
+                double objectDistance = intersectionPoint.subtract(ray.getDirection()).magnitude();
+                if (objectDistance < shortestDistance) {
+                    closestObject = object;
+                    shortestDistance = objectDistance;
+                }
+            }
         }
-        
+        if (closestObject != null) {
+            raster.colorize(i, j, closestObject.getColor());
+        }
     }
 }
