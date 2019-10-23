@@ -23,9 +23,12 @@ public class Sphere extends Object{
     @Override
     public Vector3 intersect(Ray ray){
         Vector3 intersection = new Vector3();
+        
+        
         Vector3 cameraCenter = this.center.subtract(ray.getOrigin());
         
         double tca = cameraCenter.scalarProduct(ray.getDirection());
+        tca = tca / ray.getDirection().magnitude();
         if (tca == 0) return intersection;
         
         double d2 = cameraCenter.scalarProduct(cameraCenter) - tca*tca;
