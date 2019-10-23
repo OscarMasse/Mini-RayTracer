@@ -118,7 +118,7 @@ public class Raster {
 
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                bufferedImage.setRGB(i, j, pixels[i][j].getRGB());
+                bufferedImage.setRGB(i, HEIGHT - j - 1, pixels[i][j].getRGB());
             }
         }
         File outputFile = new File("image.jpg");

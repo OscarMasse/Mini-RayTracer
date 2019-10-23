@@ -10,7 +10,9 @@ package org.centrale.pappl.mini.raytracer;
  * @author skiara
  */
 public class Camera {
-    
+
+    private static Camera camera;
+
     //ATTRIBUTES
     
     /**
@@ -32,12 +34,17 @@ public class Camera {
     /**
      * Default constructor
      */
-    public Camera(){
+    private Camera(){
         this.position = new Vector3();
     }
     
     //GETTERS AND SETTERS
-    
+
+    public static Camera getCamera() {
+        if (camera == null) Camera.camera = new Camera();
+        return camera;
+    }
+
     public Vector3 getPosition() {
         return position;
     }

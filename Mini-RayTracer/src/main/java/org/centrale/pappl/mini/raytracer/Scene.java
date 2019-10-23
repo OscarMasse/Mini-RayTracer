@@ -9,7 +9,7 @@ public class Scene {
     private ArrayList<Object> objects;
     private ArrayList<Light> lights;
 
-    private Camera camera = new Camera();
+    private Camera camera = Camera.getCamera();
     private Raster raster = new Raster();
     
     public final static Vector3 UX = new Vector3(1, 0, 0);
@@ -17,7 +17,7 @@ public class Scene {
     public final static Vector3 UZ = new Vector3(0, 0, 1);
     
 
-    public Scene() {
+    private Scene() {
         objects = new ArrayList<>();
         lights = new ArrayList<>();
     }

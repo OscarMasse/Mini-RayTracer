@@ -11,14 +11,17 @@ package org.centrale.pappl.mini.raytracer;
  */
 public class RayTracer {
 
-    public Object closestObject;
-    private double shortestDistance;
+//    public Object closestObject;
+//    private double shortestDistance;
 
     RayTracer(){
-        shortestDistance = Double.MAX_VALUE;
+//        shortestDistance = Double.MAX_VALUE;
     }
 
     public void trace(Raster raster, int i, int j){
+
+        Object closestObject = null;
+        double shortestDistance = Double.MAX_VALUE;
 
         // Construction of the ray passing through the pixel (i,j)
         Vector3 direction = raster.getOrigin();
@@ -39,6 +42,8 @@ public class RayTracer {
         }
         if (closestObject != null) {
             raster.colorize(i, j, closestObject.getColor());
+//            closestObject = null;
+//            shortestDistance = Double.MAX_VALUE;
         }
     }
 }
