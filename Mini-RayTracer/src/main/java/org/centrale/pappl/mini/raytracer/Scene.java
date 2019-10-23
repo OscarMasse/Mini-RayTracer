@@ -10,6 +10,11 @@ public class Scene {
 
     private Camera camera = new Camera();
     private Raster raster = new Raster();
+    
+    public final static Vector3 UX = new Vector3(1, 0, 0);
+    public final static Vector3 UY = new Vector3(1, 0, 0);
+    public final static Vector3 UZ = new Vector3(1, 0, 0);
+    
 
     public Scene() {
         //TODO ...
