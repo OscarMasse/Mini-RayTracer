@@ -5,7 +5,6 @@
  */
 package org.centrale.pappl.mini.raytracer;
 
-import static java.lang.Math.sqrt;
 
 /**
  *
@@ -46,30 +45,10 @@ public class Sphere extends SceneObject {
         intersection.set(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)));
 
         return true;
-
-//        Vector3 cameraCenter = this.center.subtract(ray.getOrigin());
-//
-//        double tca = cameraCenter.dot(ray.getDirection());
-//        tca = tca / ray.getDirection().magnitude();
-//
-//        double d2 = cameraCenter.dot(cameraCenter) - tca*tca;
-//
-//        if (d2 > radius*radius) return intersection;
-//
-//        double thc = sqrt(radius*radius - d2);
-//        double distanceToCamera = tca - thc;
-//
-//        Vector3 intersectionDirection = ray.getOrigin().add(ray.getDirection().normalized().scale(distanceToCamera));
-//
-//        intersection = new Vector3(intersectionDirection.dot(Scene.UX), intersectionDirection.dot(Scene.UY), intersectionDirection.dot(Scene.UZ));
-//
-//        return intersection;
     }
     
     @Override
     public Vector3 getNormal(Vector3 position){
-        Vector3 normal = new Vector3();
-        return normal;
+        return position.subtract(this.center).normalized();
     }
-    
 }
