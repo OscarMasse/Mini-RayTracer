@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Vector;
 
 /**
  * @author skiara
@@ -36,7 +37,7 @@ public class Raster {
     /**
      * Raster image: board of pixels filled with a color
      */
-    private Color[][] pixels;
+    private Vector3[][] pixels;
 
     /**
      * Raster image's height
@@ -56,7 +57,7 @@ public class Raster {
      * @param origin
      * @param pixels
      */
-    public Raster(Vector3 origin, Vector3 ux, Vector3 uy, Color[][] pixels) {
+    public Raster(Vector3 origin, Vector3 ux, Vector3 uy, Vector3[][] pixels) {
         this.origin = origin;
         this.ux = ux;
         this.uy = uy;
@@ -70,10 +71,10 @@ public class Raster {
         this.origin = new Vector3(-WIDTH/2, -HEIGHT/2, 1000);
         this.ux = new Vector3(1, 0);
         this.uy = new Vector3(0, 1);
-        this.pixels = new Color[Raster.WIDTH][Raster.HEIGHT];
+        this.pixels = new Vector3[Raster.WIDTH][Raster.HEIGHT];
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                pixels[i][j] = Color.BLACK;
+                pixels[i][j] = new Vector3();
             }
         }
     }
@@ -104,12 +105,12 @@ public class Raster {
         this.uy = uy;
     }
 
-    public Color[][] getPixels() {
+    public Vector3[][] getPixels() {
         return pixels;
     }
 
 
-    public void colorize(int i, int j, Color color) {
+    public void colorize(int i, int j, Vector3 color) {
         pixels[i][j] = color;
     }
 
@@ -118,7 +119,7 @@ public class Raster {
 
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                bufferedImage.setRGB(i, HEIGHT - j - 1, pixels[i][j].getRGB());
+                bufferedImage.setRGB(i, HEIGHT - j - 1, pixels[i][j].toRGB());
             }
         }
         File outputFile = new File("image.png");

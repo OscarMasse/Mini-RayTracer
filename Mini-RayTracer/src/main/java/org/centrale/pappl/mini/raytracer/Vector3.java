@@ -1,5 +1,7 @@
 package org.centrale.pappl.mini.raytracer;
 
+import java.awt.*;
+
 public class Vector3 {
     public double x;
     public double y;
@@ -26,6 +28,9 @@ public class Vector3 {
     public Vector3(Vector3 vector3) {
         this(vector3.x, vector3.y, vector3.z);
     }
+
+    public Vector3(Color color) {
+        this(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f); }
 
     public Vector3 add(Vector3 vector3) {
         return new Vector3(x + vector3.x, y + vector3.y, z + vector3.z);
@@ -70,4 +75,7 @@ public class Vector3 {
         this.z = vector3.z;
     }
 
+    public int toRGB() {
+        return 0xFF000000 + ((int)(x * 255) << 16) + ((int) (y * 255) << 8) + ((int) (z * 255));
+    }
 }
