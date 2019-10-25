@@ -66,4 +66,8 @@ public class Scene {
     public void addObject(SceneObject sceneObject) {
         sceneObjects.add(sceneObject);
     }
+
+    public void addLight(Light light) {
+        lights.add(light);
+    }
 }

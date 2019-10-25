@@ -26,7 +26,8 @@ public class Sphere extends SceneObject {
 }
     
     @Override
-    public boolean intersect(Ray ray, RayCastResult rayCastResult){
+    public RayCastResult intersect(Ray ray){
+        RayCastResult rayCastResult = new RayCastResult();
 
         /*
             O <- Origine du lancé de rayon
@@ -44,13 +45,13 @@ public class Sphere extends SceneObject {
 
         double mPCSq = PC.magnitudeSq();
 
-        if (mPCSq > radiusSq) return false;
+        if (mPCSq > radiusSq) return rayCastResult;
 
 //        intersection.set(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)));
 
         rayCastResult.setResult(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)), this);
-
-        return true;
+        rayCastResult.hit = true;
+        return rayCastResult;
     }
     
     @Override

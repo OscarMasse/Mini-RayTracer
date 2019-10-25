@@ -8,6 +8,8 @@ package org.centrale.pappl.mini.raytracer;
 import org.centrale.pappl.mini.raytracer.scene.Camera;
 import org.centrale.pappl.mini.raytracer.scene.Raster;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
+import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
+import org.centrale.pappl.mini.raytracer.scene.light.Light;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.scene.object.Sphere;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
@@ -30,16 +32,25 @@ public class Main {
         RayTracer rayTracer = new RayTracer();
 
         // Fill objects
-        SceneObject sceneObject = new Sphere(new Vector3(300, 450, 1100), 50);
-        sceneObject.setColor(new Vector3(Color.magenta));
+        SceneObject sceneObject = new Sphere(new Vector3(-400, -150, 1500), 300);
+        sceneObject.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
         scene.addObject(sceneObject);
 
-        SceneObject sceneObject2 = new Sphere(new Vector3(-500, 100, 1100), 300);
-        sceneObject2.setColor(new Vector3(Color.yellow));
+        SceneObject sceneObject2 = new Sphere(new Vector3(500, 100, 1100), 300);
+        sceneObject2.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
         scene.addObject(sceneObject2);
 
+        SceneObject sceneObject3 = new Sphere(new Vector3(300, 100, 900), 50);
+        sceneObject3.setColor(new Vector3((float) 0x6a / 0xFF, (float) 0x40 / 0xFF, (float) 0x9B / 0xFF));
+        scene.addObject(sceneObject3);
+
         // Fill lights
-        
+        DirectionalLight light1 = new DirectionalLight(new Vector3(1, -1, 1.5), new Vector3(Color.white), 1.2);
+        scene.addLight(light1);
+
+        DirectionalLight light2 = new DirectionalLight(new Vector3(-1 , 0), new Vector3(Color.white), 0.6);
+        scene.addLight(light2);
+
         // For each pixel in raster
         for (int i = 0; i < Raster.WIDTH; i++){
             for (int j = 0; j < Raster.HEIGHT; j++){

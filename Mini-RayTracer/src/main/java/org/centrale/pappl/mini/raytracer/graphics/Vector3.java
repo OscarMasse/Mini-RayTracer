@@ -75,6 +75,10 @@ public class Vector3 {
         this.z = vector3.z;
     }
 
+    public Vector3 clamp() {
+        return new Vector3(Math.max(0, Math.min(1, x)), Math.max(0, Math.min(1, y)), Math.max(0, Math.min(1, z)));
+    }
+
     public int toRGB() {
         return 0xFF000000 + ((int)(x * 255) << 16) + ((int) (y * 255) << 8) + ((int) (z * 255));
     }

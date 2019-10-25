@@ -6,8 +6,11 @@ public class RayCastResult {
     public Vector3 intersection;
     public SceneObject hitObject;
     public Vector3 normal;
+    public boolean hit;
 
-    public RayCastResult(){}
+    public RayCastResult(){
+        this.hit = false;
+    }
 
     public RayCastResult(Vector3 intersection, SceneObject hitObject) {
         this.intersection = intersection;
