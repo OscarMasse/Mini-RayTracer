@@ -14,51 +14,52 @@ public class Light {
     //ATTRIBUTES
     
     /**
-     * Light's origin point
+     * Light's direction
      */
-    private Vector3 origin;
+    private Vector3 direction;
+    
     
     /**
-     * Light's intensity
+     * Light's color
      */
-    private int intensity;
+    private Vector3 lightColor;
     
     //CONSTRUCTORS
     
     /**
      * Constructor
-     * @param origin
-     * @param intensity 
+     * @param direction
+     * @param lightColor 
      */
-    public Light (Vector3 origin, int intensity){
-        this.origin = origin;
-        this.intensity = intensity;
+    public Light (Vector3 direction, Vector3 lightColor){
+        this.direction = direction;
+        this.lightColor = lightColor;
     }
     
     /**
      * Default constructor
      */
     public Light(){
-        this.origin = new Vector3();
-        this.intensity = 0;
+        this.direction = new Vector3();
+        this.lightColor = new Vector3();
     }
     
     //GETTERS AND SETTERS
 
-    public Vector3 getOrigin() {
-        return origin;
+    public Vector3 getDirection() {
+        return direction;
     }
 
-    public void setOrigin(Vector3 origin) {
-        this.origin = origin;
+    public void setDirection(Vector3 direction) {
+        this.direction = direction;
     }
 
-    public int getIntensity() {
-        return intensity;
+    public Vector3 getLightColor() {
+        return lightColor;
     }
 
-    public void setIntensity(int intensity) {
-        this.intensity = intensity;
+    public void setLightColor(Vector3 lightColor) {
+        this.lightColor = lightColor;
     }
-    
+
 }
