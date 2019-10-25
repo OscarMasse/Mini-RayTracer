@@ -5,6 +5,13 @@
  */
 package org.centrale.pappl.mini.raytracer;
 
+import org.centrale.pappl.mini.raytracer.scene.Raster;
+import org.centrale.pappl.mini.raytracer.scene.Scene;
+import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
+import org.centrale.pappl.mini.raytracer.graphics.Ray;
+import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
+
 /**
  *
  * @author skiara
@@ -32,9 +39,9 @@ public class RayTracer {
 
         // Testing intersection with each object of the scene
         for (SceneObject sceneObject : Scene.getScene().getSceneObjects()) {
-            Vector3 intersectionPoint = new Vector3();
-            if (sceneObject.intersect(ray, intersectionPoint)) {
-                double objectDistance = intersectionPoint.magnitude();
+            RayCastResult rayCastResult = new RayCastResult();
+            if (sceneObject.intersect(ray, rayCastResult)) {
+                double objectDistance = rayCastResult.intersection.magnitude();
                 if (objectDistance < shortestDistance) {
                     closestSceneObject = sceneObject;
                     shortestDistance = objectDistance;

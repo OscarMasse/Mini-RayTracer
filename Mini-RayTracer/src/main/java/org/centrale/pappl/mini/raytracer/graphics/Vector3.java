@@ -1,4 +1,4 @@
-package org.centrale.pappl.mini.raytracer;
+package org.centrale.pappl.mini.raytracer.graphics;
 
 import java.awt.*;
 

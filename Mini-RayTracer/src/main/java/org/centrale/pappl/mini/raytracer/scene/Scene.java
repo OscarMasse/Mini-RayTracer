@@ -1,4 +1,8 @@
-package org.centrale.pappl.mini.raytracer;
+package org.centrale.pappl.mini.raytracer.scene;
+
+import org.centrale.pappl.mini.raytracer.scene.light.Light;
+import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 import java.util.ArrayList;
 

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.centrale.pappl.mini.raytracer;
+package org.centrale.pappl.mini.raytracer.scene;
+
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 /**
  *

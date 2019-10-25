@@ -5,6 +5,13 @@
  */
 package org.centrale.pappl.mini.raytracer;
 
+import org.centrale.pappl.mini.raytracer.scene.Camera;
+import org.centrale.pappl.mini.raytracer.scene.Raster;
+import org.centrale.pappl.mini.raytracer.scene.Scene;
+import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
+import org.centrale.pappl.mini.raytracer.scene.object.Sphere;
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
+
 import java.awt.*;
 import java.io.IOException;
 
@@ -28,7 +35,7 @@ public class Main {
         scene.addObject(sceneObject);
 
         SceneObject sceneObject2 = new Sphere(new Vector3(-500, 100, 1100), 300);
-        sceneObject2.setColor(new Vector3(Color.cyan));
+        sceneObject2.setColor(new Vector3(Color.yellow));
         scene.addObject(sceneObject2);
 
         // Fill lights

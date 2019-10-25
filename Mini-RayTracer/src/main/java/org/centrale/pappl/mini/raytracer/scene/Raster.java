@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.centrale.pappl.mini.raytracer;
+package org.centrale.pappl.mini.raytracer.scene;
+
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Vector;
 
 /**
  * @author skiara

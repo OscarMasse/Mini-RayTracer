@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.centrale.pappl.mini.raytracer;
+package org.centrale.pappl.mini.raytracer.scene.object;
 
+
+import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
+import org.centrale.pappl.mini.raytracer.graphics.Ray;
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 /**
  *
@@ -22,7 +26,7 @@ public class Sphere extends SceneObject {
 }
     
     @Override
-    public boolean intersect(Ray ray, Vector3 intersection){
+    public boolean intersect(Ray ray, RayCastResult rayCastResult){
 
         /*
             O <- Origine du lancé de rayon
@@ -42,7 +46,9 @@ public class Sphere extends SceneObject {
 
         if (mPCSq > radiusSq) return false;
 
-        intersection.set(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)));
+//        intersection.set(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)));
+
+        rayCastResult.setResult(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)), this);
 
         return true;
     }
