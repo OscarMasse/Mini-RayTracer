@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
+import org.centrale.pappl.mini.raytracer.scene.Scene;
 
 /**
  *
@@ -18,7 +19,12 @@ public class Box extends SceneObject {
 
     private ArrayList<Vector3> bounds;
 
-    public void Box3(Vector3 vmin, Vector3 vmax) {
+    public Box() {
+        this.bounds = new ArrayList<>();
+    }
+
+    public Box(Vector3 vmin, Vector3 vmax) {
+        this();
         this.bounds.add(vmin);
         this.bounds.add(vmax);
     }
@@ -90,7 +96,7 @@ public class Box extends SceneObject {
 
         //à vérifier
         rayCastResult.hit = true;
-        rayCastResult.setResult(new Vector3(ray.getOrigin().add(ray.getDirection().scale(tmin))), this);
+        rayCastResult.setResult(new Vector3(ray.getDirection().scale(tmin)), this);
 
         return rayCastResult;
     }
@@ -98,32 +104,32 @@ public class Box extends SceneObject {
     @Override
     public Vector3 getNormal(Vector3 position) {
         Vector3 normal = new Vector3();
-        if (position.subtract(this.bounds.get(0)).magnitude() < position.subtract(this.bounds.get(1)).magnitude()) {
-            if (position.x == this.bounds.get(0).x && position.y == this.bounds.get(0).y) {
-                //coordonnée z est vector normal
-            }
 
-            if (position.y == this.bounds.get(0).y && position.z == this.bounds.get(0).z) {
-                //coordonnée x est vector normal
-            }
-            
-            if (position.z == this.bounds.get(0).z && position.x == this.bounds.get(0).x) {
-                //coordonnée y est vector normal
-            }
+        if (position.x == this.bounds.get(0).x && position.y == this.bounds.get(0).y) {
+            normal = new Vector3(Scene.UZ.scale(-1));
         }
-        else {
-            if (position.x == this.bounds.get(1).x && position.y == this.bounds.get(1).y) {
-                //coordonnée z est vector normal
-            }
 
-            if (position.y == this.bounds.get(1).y && position.z == this.bounds.get(1).z) {
-                //coordonnée x est vector normal
-            }
-            
-            if (position.z == this.bounds.get(1).z && position.x == this.bounds.get(1).x) {
-                //coordonnée y est vector normal
-            }
+        else if (position.y == this.bounds.get(0).y && position.z == this.bounds.get(0).z) {
+            normal = new Vector3(Scene.UX.scale (-1));
         }
-        return normal;
+
+        else if (position.z == this.bounds.get(0).z && position.x == this.bounds.get(0).x) {
+            normal = new Vector3(Scene.UY.scale(-1));
+        }
+
+        else if (position.x == this.bounds.get(1).x && position.y == this.bounds.get(1).y) {
+            normal = new Vector3(Scene.UZ);
+        }
+
+        else if (position.y == this.bounds.get(1).y && position.z == this.bounds.get(1).z) {
+            normal = new Vector3(Scene.UX);
+        }
+
+        else if (position.z == this.bounds.get(1).z && position.x == this.bounds.get(1).x) {
+            normal = new Vector3(Scene.UY);
+        }
+
+        System.out.println(normal.z);
+        return Scene.UZ;
     }
 }
