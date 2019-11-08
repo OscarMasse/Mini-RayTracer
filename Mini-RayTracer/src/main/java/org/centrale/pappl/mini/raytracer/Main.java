@@ -33,24 +33,23 @@ public class Main {
 
         // Fill objects
         
-        SceneObject sceneObject = new Box(new Vector3(0, 0, 1100), new Vector3(50, 50, 1150));
+        SceneObject sceneObject = new Box(new Vector3(0, -200, -1300), new Vector3(-300, 200, -1350));
         sceneObject.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
         scene.addObject(sceneObject);
-        /**
-        SceneObject sceneObject2 = new Sphere(new Vector3(500, 100, 1100), 300);
+        
+        SceneObject sceneObject2 = new Sphere(new Vector3(400, 100, -1100), 300);
         sceneObject2.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
         scene.addObject(sceneObject2);
 
-        SceneObject sceneObject3 = new Sphere(new Vector3(300, 100, 900), 50);
+        SceneObject sceneObject3 = new Sphere(new Vector3(0, 100, -1050), 50);
         sceneObject3.setColor(new Vector3((float) 0x6a / 0xFF, (float) 0x40 / 0xFF, (float) 0x9B / 0xFF));
         scene.addObject(sceneObject3);
-        */
         
         // Fill lights
-        DirectionalLight light1 = new DirectionalLight(new Vector3(1, -1, 1.5), new Vector3(Color.white), 1.2);
+        DirectionalLight light1 = new DirectionalLight(new Vector3(1, 1, -1.5), new Vector3(Color.white), 1.2);
         scene.addLight(light1);
 
-        DirectionalLight light2 = new DirectionalLight(new Vector3(-1 , 0), new Vector3(Color.white), 0.6);
+        DirectionalLight light2 = new DirectionalLight(new Vector3(-1, 0), new Vector3(Color.white), 0.6);
         scene.addLight(light2);
         
 

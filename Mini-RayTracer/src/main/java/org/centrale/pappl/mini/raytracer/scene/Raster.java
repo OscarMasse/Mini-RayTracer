@@ -68,7 +68,7 @@ public class Raster {
      * Default constructor
      */
     public Raster() {
-        this.origin = new Vector3(-WIDTH/2, -HEIGHT/2, 1000);
+        this.origin = new Vector3(-WIDTH/2, -HEIGHT/2, -1000);
         this.ux = new Vector3(1, 0);
         this.uy = new Vector3(0, 1);
         this.pixels = new Vector3[Raster.WIDTH][Raster.HEIGHT];

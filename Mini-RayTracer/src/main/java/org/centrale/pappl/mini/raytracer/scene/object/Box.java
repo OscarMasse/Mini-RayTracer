@@ -105,31 +105,27 @@ public class Box extends SceneObject {
     public Vector3 getNormal(Vector3 position) {
         Vector3 normal = new Vector3();
 
-        if (position.x == this.bounds.get(0).x && position.y == this.bounds.get(0).y) {
-            normal = new Vector3(Scene.UZ.scale(-1));
+        if (position.x == this.bounds.get(0).x) {
+            normal = new Vector3(Scene.UX.scale(-1));
         }
-
-        else if (position.y == this.bounds.get(0).y && position.z == this.bounds.get(0).z) {
-            normal = new Vector3(Scene.UX.scale (-1));
-        }
-
-        else if (position.z == this.bounds.get(0).z && position.x == this.bounds.get(0).x) {
+        else if (position.y == this.bounds.get(0).y) {
             normal = new Vector3(Scene.UY.scale(-1));
         }
-
-        else if (position.x == this.bounds.get(1).x && position.y == this.bounds.get(1).y) {
+        else if (position.z == this.bounds.get(0).z) {
             normal = new Vector3(Scene.UZ);
         }
 
-        else if (position.y == this.bounds.get(1).y && position.z == this.bounds.get(1).z) {
+        else if (position.x == this.bounds.get(1).x) {
             normal = new Vector3(Scene.UX);
         }
 
-        else if (position.z == this.bounds.get(1).z && position.x == this.bounds.get(1).x) {
+        else if (position.y == this.bounds.get(1).y) {
             normal = new Vector3(Scene.UY);
         }
 
-        System.out.println(normal.z);
-        return Scene.UZ;
+        else if (position.z == this.bounds.get(1).z) {
+            normal = new Vector3(Scene.UZ.scale(-1));
+        }
+        return normal;
     }
 }

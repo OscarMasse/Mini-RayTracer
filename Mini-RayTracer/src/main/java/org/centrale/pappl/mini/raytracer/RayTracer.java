@@ -54,10 +54,13 @@ public class RayTracer {
         if (closestSceneObject != null) {
             Vector3 color = new Vector3();
                 for (Light light : Scene.getScene().getLights()) {
+                    /**
                     color = color.add(closestSceneObject.getColor()
                             .add(light.getLightColor().scale(-light.getIntensity() * hitRayCastResult.normal.dot(light.getDirection()) - 1))
                             .clamp())
                             .clamp();
+                            */
+                    color = closestSceneObject.getColor();
                 }
             raster.colorize(i, j, color);
         }
