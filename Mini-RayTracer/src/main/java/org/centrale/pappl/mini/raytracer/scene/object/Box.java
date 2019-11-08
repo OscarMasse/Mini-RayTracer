@@ -38,7 +38,8 @@ public class Box extends SceneObject {
     }
 
     @Override
-    public boolean intersect(Ray ray, RayCastResult rayCastResult) {
+    public RayCastResult intersect(Ray ray) {
+        RayCastResult rayCastResult = new RayCastResult();
         Vector3 min = this.bounds.get(0);
         Vector3 max = this.bounds.get(1);
 
@@ -57,7 +58,7 @@ public class Box extends SceneObject {
         }
 
         if ((tmin > tymax) || (tymin > tmax)) {
-            return false;
+            return rayCastResult;
         }
 
         if (tymin > tmin) {
@@ -76,7 +77,7 @@ public class Box extends SceneObject {
         }
 
         if ((tmin > tzmax) || (tzmin > tmax)) {
-            return false;
+            return rayCastResult;
         }
 
         if (tzmin > tmin) {
@@ -88,9 +89,10 @@ public class Box extends SceneObject {
         }
 
         //à vérifier
+        rayCastResult.hit = true;
         rayCastResult.setResult(new Vector3(ray.getOrigin().add(ray.getDirection().scale(tmin))), this);
 
-        return true;
+        return rayCastResult;
     }
 
     @Override
