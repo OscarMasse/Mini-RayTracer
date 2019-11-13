@@ -33,7 +33,7 @@ public class Main {
 
         // Fill objects
         
-        SceneObject sceneObject = new Box(new Vector3(0, -200, -1300), new Vector3(-300, 200, -1350));
+        SceneObject sceneObject = new Box(new Vector3(-100, -150, -1300), new Vector3(-500, -400, -1350));
         sceneObject.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
         scene.addObject(sceneObject);
         
@@ -56,7 +56,6 @@ public class Main {
         // For each pixel in raster
         for (int i = 0; i < Raster.WIDTH; i++){
             for (int j = 0; j < Raster.HEIGHT; j++){
-
                 rayTracer.trace(raster, i, j);
             }
         }

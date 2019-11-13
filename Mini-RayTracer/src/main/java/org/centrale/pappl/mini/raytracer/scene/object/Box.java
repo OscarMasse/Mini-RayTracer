@@ -18,6 +18,7 @@ import org.centrale.pappl.mini.raytracer.scene.Scene;
 public class Box extends SceneObject {
 
     private ArrayList<Vector3> bounds;
+    
 
     public Box() {
         this.bounds = new ArrayList<>();
@@ -96,7 +97,8 @@ public class Box extends SceneObject {
 
         //à vérifier
         rayCastResult.hit = true;
-        rayCastResult.setResult(new Vector3(ray.getDirection().scale(tmin)), this);
+        Vector3 result = new Vector3(ray.getDirection().scale(tmin));
+        rayCastResult.setResult(result, this);
 
         return rayCastResult;
     }
@@ -105,25 +107,25 @@ public class Box extends SceneObject {
     public Vector3 getNormal(Vector3 position) {
         Vector3 normal = new Vector3();
 
-        if (position.x == this.bounds.get(0).x) {
+        if (Math.round(position.x)== this.bounds.get(0).x) {
             normal = new Vector3(Scene.UX.scale(-1));
         }
-        else if (position.y == this.bounds.get(0).y) {
+        else if (Math.round(position.y) == this.bounds.get(0).y) {
             normal = new Vector3(Scene.UY.scale(-1));
         }
-        else if (position.z == this.bounds.get(0).z) {
+        else if (Math.round(position.z) == this.bounds.get(0).z) {
             normal = new Vector3(Scene.UZ);
         }
 
-        else if (position.x == this.bounds.get(1).x) {
+        else if (Math.round(position.x) == this.bounds.get(1).x) {
             normal = new Vector3(Scene.UX);
         }
 
-        else if (position.y == this.bounds.get(1).y) {
+        else if (Math.round(position.y) == this.bounds.get(1).y) {
             normal = new Vector3(Scene.UY);
         }
 
-        else if (position.z == this.bounds.get(1).z) {
+        else if (Math.round(position.z) == this.bounds.get(1).z) {
             normal = new Vector3(Scene.UZ.scale(-1));
         }
         return normal;
