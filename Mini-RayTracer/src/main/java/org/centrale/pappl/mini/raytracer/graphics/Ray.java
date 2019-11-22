@@ -50,4 +50,17 @@ public class Ray {
         return direction;
     }
     
+    public Ray generateReflection(Vector3 intersection, Vector3 normal){
+        Vector3 reflectedDirection = new Vector3(intersection);
+        reflectedDirection.subtract(normal.scale(2).scale(normal.dot(intersection)));
+        Ray reflection = new Ray(intersection, reflectedDirection);
+        return reflection;
+    }
+    
+    public Ray generateRefraction (){
+        
+        return new Ray();
+    }
+    
+    
 }

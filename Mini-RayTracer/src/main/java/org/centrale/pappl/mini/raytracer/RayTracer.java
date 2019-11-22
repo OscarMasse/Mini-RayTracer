@@ -21,11 +21,11 @@ import java.awt.*;
  */
 public class RayTracer {
 
-    RayTracer(){
+    RayTracer() {
 //        shortestDistance = Double.MAX_VALUE;
     }
 
-    public void trace(Raster raster, int i, int j){
+    public void trace(Raster raster, int i, int j) {
 
         SceneObject closestSceneObject = null;
         double shortestDistance = Double.MAX_VALUE;
@@ -53,12 +53,12 @@ public class RayTracer {
         }
         if (closestSceneObject != null) {
             Vector3 color = new Vector3();
-                for (Light light : Scene.getScene().getLights()) {
-                    color = color.add(closestSceneObject.getColor()
-                            .add(light.getLightColor().scale(-light.getIntensity() * hitRayCastResult.normal.dot(light.getDirection()) - 1))
-                            .clamp())
-                            .clamp();
-                }
+            for (Light light : Scene.getScene().getLights()) {
+                color = color.add(closestSceneObject.getColor()
+                        .add(light.getLightColor().scale(-light.getIntensity() * hitRayCastResult.normal.dot(light.getDirection()) - 1))
+                        .clamp())
+                        .clamp();
+            }
             raster.colorize(i, j, color);
         }
     }
