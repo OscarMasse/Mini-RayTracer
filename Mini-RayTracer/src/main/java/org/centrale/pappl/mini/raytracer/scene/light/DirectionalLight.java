@@ -4,7 +4,14 @@ import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 public class DirectionalLight extends Light {
 
+    private Vector3 direction;
+    
     public DirectionalLight(Vector3 direction, Vector3 lightColor, double intensity) {
-        super(direction, lightColor, intensity);
+        super(lightColor, intensity);
+        this.direction = direction.normalized();
+    }
+    
+    public Vector3 getDirection(Vector3 intersection) {
+        return direction;
     }
 }

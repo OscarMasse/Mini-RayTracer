@@ -55,6 +55,10 @@ public class Vector3 {
     public Vector3 scale(double d) {
         return new Vector3(x*d, y*d, z*d);
     }
+    
+    public Vector3 multiply (Vector3 vector) {
+        return new Vector3(this.x * vector.x, this.y * vector.y, this.z * vector.z);
+    }
 
     public boolean isNullVector() {
         if (this.x == 0 && this.y == 0 && this.z == 0) return true;

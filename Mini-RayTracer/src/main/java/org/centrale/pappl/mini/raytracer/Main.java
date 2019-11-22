@@ -15,6 +15,7 @@ import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 import java.awt.*;
 import java.io.IOException;
+import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
 import org.centrale.pappl.mini.raytracer.scene.object.Box;
 
 /**
@@ -33,7 +34,7 @@ public class Main {
 
         // Fill objects
         
-        SceneObject sceneObject = new Box(new Vector3(-100, -150, -1300), new Vector3(-500, -400, -1350));
+        SceneObject sceneObject = new Box(new Vector3(-100, -150, -1300), new Vector3(-500, -400, -2000));
         sceneObject.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
         scene.addObject(sceneObject);
         
@@ -46,13 +47,20 @@ public class Main {
         scene.addObject(sceneObject3);
         
         // Fill lights
-        DirectionalLight light1 = new DirectionalLight(new Vector3(1, 1, -1.5), new Vector3(Color.white), 1.2);
-        scene.addLight(light1);
-
-        DirectionalLight light2 = new DirectionalLight(new Vector3(-1, 0), new Vector3(Color.white), 0.6);
-        scene.addLight(light2);
         
+        DirectionalLight dLight1 = new DirectionalLight(new Vector3(1, 1, -1.5), new Vector3(Color.white), 2);
+        scene.addLight(dLight1);
+        
+        
+        /**
+        DirectionalLight dLight2 = new DirectionalLight(new Vector3(-1, 0), new Vector3(Color.white), 0.6);
+        scene.addLight(dLight2);
+        */
 
+        
+        PointLight pLight1 = new PointLight(new Vector3(Color.white), 10, new Vector3(0, 0, -1000));
+        scene.addLight(pLight1);
+        
         // For each pixel in raster
         for (int i = 0; i < Raster.WIDTH; i++){
             for (int j = 0; j < Raster.HEIGHT; j++){

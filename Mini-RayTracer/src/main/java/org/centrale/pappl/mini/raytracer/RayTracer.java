@@ -14,6 +14,8 @@ import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 import java.awt.*;
+import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
+import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
 
 /**
  *
@@ -54,10 +56,22 @@ public class RayTracer {
         if (closestSceneObject != null) {
             Vector3 color = new Vector3();
             for (Light light : Scene.getScene().getLights()) {
-                color = color.add(closestSceneObject.getColor()
-                        .add(light.getLightColor().scale(-light.getIntensity() * hitRayCastResult.normal.dot(light.getDirection()) - 1))
-                        .clamp())
-                        .clamp();
+                if (light instanceof DirectionalLight) {
+                    double hitAngle = hitRayCastResult.normal.dot(((DirectionalLight) light).getDirection(hitRayCastResult.intersection));
+                    double intensity = -light.getIntensity();
+                    Vector3 vector = light.getLightColor().scale(intensity * hitAngle -1);
+                    
+                    color = color.add(closestSceneObject.getColor().multiply(vector)).clamp();
+                }
+                if (light instanceof PointLight) {
+                    
+                    double hitAngle = hitRayCastResult.normal.dot(((PointLight) light).getDirection(hitRayCastResult.intersection).normalized());
+                    double intensity = ((PointLight) light).getIntensity(hitRayCastResult.intersection);
+                    Vector3 lightColor = light.getLightColor().scale(intensity* hitAngle);
+                    
+                    Vector3 vector = closestSceneObject.getColor().multiply(lightColor);    
+                    color = color.add(vector).clamp();
+                }
             }
             raster.colorize(i, j, color);
         }
