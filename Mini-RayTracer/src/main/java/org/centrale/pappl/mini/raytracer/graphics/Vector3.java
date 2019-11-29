@@ -86,4 +86,9 @@ public class Vector3 {
     public int toRGB() {
         return 0xFF000000 + ((int)(x * 255) << 16) + ((int) (y * 255) << 8) + ((int) (z * 255));
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + " ," + y + " ," + z + ")";
+    }
 }

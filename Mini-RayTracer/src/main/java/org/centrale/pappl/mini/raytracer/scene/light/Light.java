@@ -14,10 +14,14 @@ import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 public abstract class Light {
     private Vector3 lightColor;
     private double intensity;
+    private Vector3 id;
+    private Vector3 is;
 
     protected Light(Vector3 lightColor, double intensity) {
         this.lightColor = lightColor;
         this.intensity = intensity;
+        this.id = new Vector3(1, 1, 1);
+        this.is = new Vector3(1, 1, 1);
     }
 
     public Vector3 getLightColor() {
@@ -30,5 +34,13 @@ public abstract class Light {
     
     public void setIntensity(double newIntensity){
         this.intensity = newIntensity;
+    }
+
+    public Vector3 getId() {
+        return this.is;
+    }
+
+    public Vector3 getIs() {
+        return this.is;
     }
 }

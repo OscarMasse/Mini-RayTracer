@@ -11,7 +11,7 @@ public class DirectionalLight extends Light {
         this.direction = direction.normalized();
     }
     
-    public Vector3 getDirection(Vector3 intersection) {
+    public Vector3 getDirection() {
         return direction;
     }
 }
