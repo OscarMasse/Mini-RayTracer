@@ -49,6 +49,10 @@ public class Ray {
     public Vector3 getDirection() {
         return direction;
     }
+
+    public Ray rotate(Matrix3 m) {
+        return new Ray(this.origin, m.multiply(this.direction));
+    }
     
     public Ray generateReflection(Vector3 intersection, Vector3 normal){
         Vector3 reflectedDirection = new Vector3(intersection);

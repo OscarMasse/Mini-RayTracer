@@ -34,11 +34,12 @@ public class Main {
 
         // Fill objects
         
-        SceneObject sceneObject = new Box(new Vector3(-100, -150, -1300), new Vector3(-500, -400, -2000));
+        Box sceneObject = new Box(new Vector3(250, -100, -1000), new Vector3(450, 200, -2000));
         sceneObject.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
+        sceneObject.rotate(new Vector3(0, 0, 1), 45);
         scene.addObject(sceneObject);
         
-        SceneObject sceneObject2 = new Sphere(new Vector3(400, 100, -1100), 300);
+        SceneObject sceneObject2 = new Sphere(new Vector3(400, 100, -1500), 300);
         sceneObject2.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
         scene.addObject(sceneObject2);
 
@@ -48,18 +49,15 @@ public class Main {
         
         // Fill lights
         
-        DirectionalLight dLight1 = new DirectionalLight(new Vector3(1, 1, -1.5), new Vector3(Color.white), 2);
+        DirectionalLight dLight1 = new DirectionalLight(new Vector3(1, 1, -1.5), new Vector3(Color.white), 1);
         scene.addLight(dLight1);
-        
-        
-        /**
+
+
         DirectionalLight dLight2 = new DirectionalLight(new Vector3(-1, 0), new Vector3(Color.white), 0.6);
         scene.addLight(dLight2);
-        */
-
         
-        PointLight pLight1 = new PointLight(new Vector3(Color.white), 10, new Vector3(0, 0, -1000));
-        scene.addLight(pLight1);
+//        PointLight pLight1 = new PointLight(new Vector3(Color.white), 10, new Vector3(0, 0, -1000));
+//        scene.addLight(pLight1);
         
         // For each pixel in raster
         for (int i = 0; i < Raster.WIDTH; i++){

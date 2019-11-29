@@ -20,7 +20,10 @@ public class RayCastResult {
 
     public void setResult(Vector3 intersection, SceneObject hitObject) {
         this.intersection = intersection;
-        this.hitObject = hitObject;
-        this.normal = hitObject.getNormal(intersection);
+        if (hitObject != null) {
+            this.hitObject = hitObject;
+            this.hit = true;
+            this.normal = hitObject.getNormal(intersection);
+        }
     }
 }

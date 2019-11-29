@@ -6,6 +6,8 @@
 package org.centrale.pappl.mini.raytracer.scene.object;
 
 import java.util.ArrayList;
+
+import org.centrale.pappl.mini.raytracer.graphics.Matrix3;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
@@ -18,16 +20,26 @@ import org.centrale.pappl.mini.raytracer.scene.Scene;
 public class Box extends SceneObject {
 
     private ArrayList<Vector3> bounds;
-    
+    private Matrix3 rotation;
 
     public Box() {
         this.bounds = new ArrayList<>();
+        this.setRotation(Matrix3.getIdentity3());
     }
 
     public Box(Vector3 vmin, Vector3 vmax) {
         this();
-        this.bounds.add(vmin);
-        this.bounds.add(vmax);
+        if(vmin.magnitude() < vmax.magnitude()) {
+            this.bounds.add(vmin);
+            this.bounds.add(vmax);
+        } else {
+            this.bounds.add(vmax);
+            this.bounds.add(vmin);
+        }
+    }
+
+    public Matrix3 getRotation() {
+        return rotation;
     }
 
     public ArrayList<Vector3> getBounds() {
@@ -44,8 +56,17 @@ public class Box extends SceneObject {
         b = c;
     }
 
+    public void setRotation(Matrix3 m) {
+        this.rotation = new Matrix3(m);
+    }
+
+    public void rotate(Vector3 axis, double angle) {
+        this.setRotation(rotation.rotate(axis, angle));
+    }
+
     @Override
     public RayCastResult intersect(Ray ray) {
+        ray = ray.rotate(rotation.transpose());
         RayCastResult rayCastResult = new RayCastResult();
         Vector3 min = this.bounds.get(0);
         Vector3 max = this.bounds.get(1);
@@ -96,8 +117,11 @@ public class Box extends SceneObject {
         }
 
         //à vérifier
-        rayCastResult.hit = true;
         Vector3 result = new Vector3(ray.getDirection().scale(tmin));
+//        rayCastResult.setResult(result, this);
+//        System.out.println(result.x + " " + result.y + " " + result.z);
+        result = rotation.multiply(result);
+//        System.out.println(result.x + " " + result.y + " " + result.z);
         rayCastResult.setResult(result, this);
 
         return rayCastResult;
@@ -128,6 +152,6 @@ public class Box extends SceneObject {
         else if (Math.round(position.z) == this.bounds.get(1).z) {
             normal = new Vector3(Scene.UZ.scale(-1));
         }
-        return normal;
+        return rotation.multiply(normal);
     }
 }

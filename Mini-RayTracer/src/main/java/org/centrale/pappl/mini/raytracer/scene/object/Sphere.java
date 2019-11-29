@@ -47,10 +47,7 @@ public class Sphere extends SceneObject {
 
         if (mPCSq > radiusSq) return rayCastResult;
 
-//        intersection.set(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)));
-
         rayCastResult.setResult(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)), this);
-        rayCastResult.hit = true;
         return rayCastResult;
     }
     
