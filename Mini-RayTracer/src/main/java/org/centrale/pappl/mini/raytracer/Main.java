@@ -36,35 +36,35 @@ public class Main {
 
         // Fill objects
 
-        Material material1 = new Material(1, 1, 1, 1);
+        Material material1 = new Material(0.3, 1, 1, 1);
 
         SceneObject sceneObject = new Box(new Vector3(-100, -150, -1300), new Vector3(-500, -400, -2000));
         sceneObject.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
         sceneObject.setMaterial(material1);
-        scene.addObject(sceneObject);
+//        scene.addObject(sceneObject);
         
         SceneObject sceneObject2 = new Sphere(new Vector3(400, 100, -1100), 300);
         sceneObject2.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
         sceneObject2.setMaterial(material1);
         scene.addObject(sceneObject2);
 
-        SceneObject sceneObject3 = new Sphere(new Vector3(0, 100, -1050), 50);
+        SceneObject sceneObject3 = new Sphere(new Vector3(-300, 100, -1100), 50);
         sceneObject3.setColor(new Vector3((float) 0x6a / 0xFF, (float) 0x40 / 0xFF, (float) 0x9B / 0xFF));
 //        sceneObject3.setColor(new Vector3(0, 0.9, 0.9)); // Bug: interaction avec lumière ambiente
         sceneObject3.setMaterial(material1);
         scene.addObject(sceneObject3);
 
-        SceneObject sceneObject4 = new Sphere(new Vector3(-300, 0, -1100), 50);
+        SceneObject sceneObject4 = new Sphere(new Vector3(-700, 100, -1100), 50);
         sceneObject4.setColor(new Vector3((float) 0x47 / 0xFF, (float) 0x4B / 0xFF, (float) 0x9B / 0xFF));
 //        sceneObject4.setColor(new Vector3(Color.white));
         sceneObject4.setMaterial(material1);
-        scene.addObject(sceneObject4);
+//        scene.addObject(sceneObject4);
 
         // Fill lights
 
-//        Scene.getScene().setAmbientLight(new AmbientLight(new Vector3(1, 1, 1), 1));
+        Scene.getScene().setAmbientLight(new AmbientLight(new Vector3(0.5, 0.5, 0.5), 1));
         
-        DirectionalLight dLight1 = new DirectionalLight(new Vector3(0, 0, -1), new Vector3(Color.white), 2);
+        DirectionalLight dLight1 = new DirectionalLight(new Vector3(1, 1, -1), new Vector3(Color.white), 2);
 //        scene.addLight(dLight1);
 
         /**
@@ -72,7 +72,7 @@ public class Main {
         scene.addLight(dLight2);
         */
         
-        PointLight pLight1 = new PointLight(new Vector3(Color.white), 1, new Vector3(0, -200, -1000));
+        PointLight pLight1 = new PointLight(new Vector3(Color.white), 1, new Vector3(-500, 100, -1100));
         scene.addLight(pLight1);
         
         // For each pixel in raster

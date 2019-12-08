@@ -96,10 +96,10 @@ public class Ray {
 
         //      Shadow Rays
         for (Light light: Scene.getScene().getLights()) {
-            Vector3 shadowOrigin = new Vector3(hitRayCastResult.intersection.add(hitRayCastResult.normal.scale(0.1)));
+            Vector3 shadowOrigin = new Vector3(hitRayCastResult.intersection);
 
-            illumination = illumination.add(new ShadowRay(closestSceneObject, light, shadowOrigin).getIllumination())
-//                    .clamp()
+            illumination = illumination.add(new ShadowRay(closestSceneObject, light, this, shadowOrigin).getIllumination())
+                    .clamp()
                     ;
         }
 
