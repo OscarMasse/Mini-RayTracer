@@ -8,7 +8,7 @@ package org.centrale.pappl.mini.raytracer;
 import org.centrale.pappl.mini.raytracer.scene.Camera;
 import org.centrale.pappl.mini.raytracer.scene.Raster;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
-import org.centrale.pappl.mini.raytracer.scene.light.AmbiantLight;
+import org.centrale.pappl.mini.raytracer.scene.light.AmbientLight;
 import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.scene.object.Sphere;
@@ -50,22 +50,29 @@ public class Main {
 
         SceneObject sceneObject3 = new Sphere(new Vector3(0, 100, -1050), 50);
         sceneObject3.setColor(new Vector3((float) 0x6a / 0xFF, (float) 0x40 / 0xFF, (float) 0x9B / 0xFF));
+//        sceneObject3.setColor(new Vector3(0, 0.9, 0.9)); // Bug: interaction avec lumière ambiente
         sceneObject3.setMaterial(material1);
         scene.addObject(sceneObject3);
-        
-        // Fill lights
-        
-        DirectionalLight dLight1 = new DirectionalLight(new Vector3(1, 1, -1.5), new Vector3(Color.white), 2);
-        scene.addLight(dLight1);
 
+        SceneObject sceneObject4 = new Sphere(new Vector3(-300, 0, -1100), 50);
+        sceneObject4.setColor(new Vector3((float) 0x47 / 0xFF, (float) 0x4B / 0xFF, (float) 0x9B / 0xFF));
+//        sceneObject4.setColor(new Vector3(Color.white));
+        sceneObject4.setMaterial(material1);
+        scene.addObject(sceneObject4);
+
+        // Fill lights
+
+//        Scene.getScene().setAmbientLight(new AmbientLight(new Vector3(1, 1, 1), 1));
+        
+        DirectionalLight dLight1 = new DirectionalLight(new Vector3(0, 0, -1), new Vector3(Color.white), 2);
+//        scene.addLight(dLight1);
 
         /**
         DirectionalLight dLight2 = new DirectionalLight(new Vector3(-1, 0), new Vector3(Color.white), 0.6);
         scene.addLight(dLight2);
         */
-
         
-        PointLight pLight1 = new PointLight(new Vector3(Color.white), 10, new Vector3(0, 0, -1000));
+        PointLight pLight1 = new PointLight(new Vector3(Color.white), 1, new Vector3(0, -200, -1000));
         scene.addLight(pLight1);
         
         // For each pixel in raster

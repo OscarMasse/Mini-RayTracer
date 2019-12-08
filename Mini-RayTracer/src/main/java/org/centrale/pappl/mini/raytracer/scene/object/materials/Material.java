@@ -6,6 +6,13 @@ public class Material {
     private double ka;
     private double alpha;
 
+    /**
+     *
+     * @param ks Specular coefficient
+     * @param kd Diffusion coefficient
+     * @param ka Ambient coefficient
+     * @param alpha Glossiness coefficient
+     */
     public Material(double ks, double kd, double ka, double alpha) {
         this.ks = ks;
         this.kd = kd;

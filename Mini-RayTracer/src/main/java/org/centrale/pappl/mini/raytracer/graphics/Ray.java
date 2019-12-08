@@ -5,6 +5,10 @@
  */
 package org.centrale.pappl.mini.raytracer.graphics;
 
+import org.centrale.pappl.mini.raytracer.scene.Scene;
+import org.centrale.pappl.mini.raytracer.scene.light.Light;
+import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
+
 /**
  *
  * @author skiara
@@ -62,5 +66,47 @@ public class Ray {
         return new Ray();
     }
     
-    
+    public Vector3 getIllumination() {
+
+        Vector3 illumination = new Vector3();
+
+        // Detection of the closest hit object
+        SceneObject closestSceneObject = null;
+        double shortestDistance = Double.MAX_VALUE;
+        RayCastResult rayCastResult;
+        RayCastResult hitRayCastResult = null;
+        for (SceneObject sceneObject : Scene.getScene().getSceneObjects()) {
+            rayCastResult = sceneObject.intersect(this);
+            if (rayCastResult.hit) {
+                double objectDistance = rayCastResult.intersection.subtract(origin).magnitude();
+                if (objectDistance < shortestDistance) {
+                    closestSceneObject = sceneObject;
+                    shortestDistance = objectDistance;
+                    hitRayCastResult = rayCastResult;
+                }
+            }
+        }
+
+        if (closestSceneObject == null) return illumination;
+
+        // Absorption
+
+        //      Ambient light
+        illumination = closestSceneObject.getColor().multiply(Scene.getScene().getAmbientLight().getLightColor()).scale(closestSceneObject.getMaterial().getKa());
+
+        //      Shadow Rays
+        for (Light light: Scene.getScene().getLights()) {
+            Vector3 shadowOrigin = new Vector3(hitRayCastResult.intersection.add(hitRayCastResult.normal.scale(0.1)));
+
+            illumination = illumination.add(new ShadowRay(closestSceneObject, light, shadowOrigin).getIllumination())
+//                    .clamp()
+                    ;
+        }
+
+        // Reflexion
+
+        // Refraction
+
+        return illumination;
+    }
 }

@@ -6,6 +6,8 @@
 package org.centrale.pappl.mini.raytracer.scene.object;
 
 import java.util.ArrayList;
+
+import org.centrale.pappl.mini.raytracer.graphics.ShadowRay;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;

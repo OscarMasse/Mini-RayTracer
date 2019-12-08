@@ -1,6 +1,6 @@
 package org.centrale.pappl.mini.raytracer.scene;
 
-import org.centrale.pappl.mini.raytracer.scene.light.AmbiantLight;
+import org.centrale.pappl.mini.raytracer.scene.light.AmbientLight;
 import org.centrale.pappl.mini.raytracer.scene.light.Light;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
@@ -15,7 +15,7 @@ public class Scene {
 
     private Camera camera = Camera.getCamera();
     private Raster raster = new Raster();
-    private AmbiantLight ambiantLight;
+    private AmbientLight ambientLight;
 
     public final static Vector3 UX = new Vector3(1, 0, 0);
     public final static Vector3 UY = new Vector3(0, 1, 0);
@@ -25,7 +25,7 @@ public class Scene {
     private Scene() {
         sceneObjects = new ArrayList<>();
         lights = new ArrayList<>();
-        ambiantLight = new AmbiantLight();
+        ambientLight = new AmbientLight();
     }
 
     public static Scene getScene() {
@@ -74,7 +74,12 @@ public class Scene {
         lights.add(light);
     }
 
-    public Light getAmbiantLight() {
-        return this.ambiantLight;
+    public Light getAmbientLight() {
+        return this.ambientLight;
+    }
+
+    public void setAmbientLight(AmbientLight ambientLight) {
+        this.ambientLight = ambientLight;
     }
 }
+
