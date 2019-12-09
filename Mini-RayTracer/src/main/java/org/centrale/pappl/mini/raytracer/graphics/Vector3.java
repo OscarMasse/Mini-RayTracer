@@ -86,4 +86,8 @@ public class Vector3 {
     public int toRGB() {
         return 0xFF000000 + ((int)(x * 255) << 16) + ((int) (y * 255) << 8) + ((int) (z * 255));
     }
+    
+    public Vector3 cross(Vector3 vector3){
+        return new Vector3(this.y*vector3.z - this.z*vector3.y, this.z*vector3.x - this.x*vector3.z, this.x*vector3.y - this.y*vector3.x);
+    }
 }
