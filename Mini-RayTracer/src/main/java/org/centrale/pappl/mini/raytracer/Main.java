@@ -5,31 +5,26 @@
  */
 package org.centrale.pappl.mini.raytracer;
 
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 import org.centrale.pappl.mini.raytracer.scene.Camera;
 import org.centrale.pappl.mini.raytracer.scene.Raster;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
 import org.centrale.pappl.mini.raytracer.scene.light.AmbientLight;
 import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
+import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.scene.object.Sphere;
-import org.centrale.pappl.mini.raytracer.graphics.Vector3;
-import java.awt.*;
-import java.io.IOException;
-import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
 import org.centrale.pappl.mini.raytracer.scene.object.TriangleMeshBox;
 import org.centrale.pappl.mini.raytracer.scene.object.materials.Material;
 
+import java.awt.*;
+import java.io.IOException;
+
 /**
- * Main class
- * @author Oscar Masse & Sarah Petrocchi @ECN
+ *
+ * @author skiara
  */
 public class Main {
-
-    /**
-     * Main method
-     * @param args
-     * @throws IOException
-     */
     public static void main(String[] args) throws IOException {
 
         Scene scene = Scene.getScene();
@@ -39,51 +34,73 @@ public class Main {
 
         RayTracer rayTracer = new RayTracer();
 
-        // Fill objects 
-        Material material1 = new Material(0.3, 1, 1, 1);
-        Material material2 = new Material(0.08, 1, 1, 1);
-        
+        // Fill objects
 
-        SceneObject sceneObject2 = new Sphere(new Vector3(-100, 0, -1200), 100);
+        Material material1 = new Material(0.03, 1, 0.1, 1);
+        material1.setParameters(1, 0.8, 0);
+
+        Material material2 = new Material(0.03, 1, 0.1, 1);
+        material2.setParameters(0.3, 10, 0);
+
+        SceneObject ground = new TriangleMeshBox(new Vector3(-1000, -300, -900), new Vector3(1000, -320, -2000), Scene.UX, Scene.UY, Scene.UZ);
+        ground.setColor(new Vector3(0.1, 0.1, 0.1));
+        ground.setMaterial(material2);
+        scene.addObject(ground);
+
+        SceneObject sceneObject2 = new Sphere(new Vector3(400, 0, -1600), 300);
         sceneObject2.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
-        sceneObject2.setMaterial(material2);
+        sceneObject2.setMaterial(material1);
         scene.addObject(sceneObject2);
-
 
         SceneObject sceneObject3 = new Sphere(new Vector3(-50, 0, -1300), 50);
         sceneObject3.setColor(new Vector3((float) 0x6a / 0xFF, (float) 0x40 / 0xFF, (float) 0x9B / 0xFF));
-        //sceneObject3.setColor(new Vector3(0, 0.9, 0.9)); // Bug: interaction avec lumière ambiente
-        sceneObject3.setMaterial(material2);
-        //scene.addObject(sceneObject3);
+//        sceneObject3.setColor(new Vector3(0, 0.9, 0.9)); // Bug: interaction avec lumière ambiente
+        sceneObject3.setMaterial(material1);
+        scene.addObject(sceneObject3);
 
+        SceneObject sceneObject4 = new Sphere(new Vector3(-200, -200, -1100), 100);
+        sceneObject4.setColor(new Vector3(0.4, 0.8, 0.3));
+        sceneObject4.setMaterial(material1);
+        scene.addObject(sceneObject4);
 
-        SceneObject sceneObject5 = new TriangleMeshBox(new Vector3(-100, 0, -1300), new Vector3(-700, -200, -1500), new Vector3(1,-1,0).normalized(), new Vector3(1,1,0).normalized(), Scene.UZ);
-        sceneObject5.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
-        sceneObject5.setMaterial(material2);
-        scene.addObject(sceneObject5);
-
-        SceneObject sceneObject6 = new TriangleMeshBox(new Vector3(-400, -200,-1200), new Vector3(-700, -400, -1500), Scene.UX, Scene.UY, Scene.UZ);
-        sceneObject6.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
-        sceneObject6.setMaterial(material2);
-        //scene.addObject(sceneObject6);
-
-        
         // Fill lights
 
-        Scene.getScene().setAmbientLight(new AmbientLight(new Vector3(0.5, 0.5, 0.5), 1));
-        
-        DirectionalLight dLight1 = new DirectionalLight(new Vector3(0, 0, -1.5), new Vector3(Color.white), 2);
-        //scene.addLight(dLight1);
-        
-        DirectionalLight dLight2 = new DirectionalLight(new Vector3(0, -1, 0), new Vector3(Color.white), 2);
-        scene.addLight(dLight2);
+        Scene.getScene().setAmbientLight(new AmbientLight(new Vector3(0.1, 0.1, 0.1), 1));
 
-        PointLight pLight1 = new PointLight(new Vector3(Color.white), 1, new Vector3(100, 0, -1000));
+        DirectionalLight dLight1 = new DirectionalLight(new Vector3(-1, -1, 1), new Vector3(Color.white), 2);
+        scene.addLight(dLight1);
+
+        /**
+         DirectionalLight dLight2 = new DirectionalLight(new Vector3(-1, 0), new Vector3(Color.white), 0.6);
+         scene.addLight(dLight2);
+         */
+
+        PointLight pLight1 = new PointLight(new Vector3(Color.white), 1, new Vector3(-200, 0, -1300));
         scene.addLight(pLight1);
-        
-        PointLight pLight2 = new PointLight(new Vector3(Color.white), 1, new Vector3(-800, -300, -1100));
+
+        PointLight pLight2 = new PointLight(new Vector3(Color.white), 1, new Vector3(50, 0, -1300));
         scene.addLight(pLight2);
 
+        PointLight pLight3 = new PointLight(new Vector3(Color.white), 1, new Vector3(400, -280, -1300));
+        scene.addLight(pLight3);
+
+        // Test
+        /*Ray ray = new Ray(new Vector3(), new Vector3(0, 0, -1));
+        RayCastResult rcr = sceneObject2.intersect(ray);
+        System.out.println("rcr.intersection = " + rcr.intersection);
+        ShadowRay sr = new ShadowRay(sceneObject2, pLight1, ray, rcr.intersection.add(rcr.normal.scale(0.000000000001f)));
+        System.out.println("sr.origin = " + sr.getOrigin());
+        System.out.println("sr.direction = " + sr.getDirection());
+
+        RayCastResult rcr2 = sceneObject3.intersect(sr);
+        System.out.println("hit: " + rcr2.hit);
+        double objectDistance = (rcr2.intersection.magnitude());
+        System.out.println("intersection = " + rcr2.intersection);
+        System.out.println("objectDistance = " + objectDistance);
+
+        System.out.println("pLight color = " + pLight1.getLightColor());
+        Vector3 v = sr.getIllumination();
+        System.out.println("illumination = " + v);*/
 
         // For each pixel in raster
         for (int i = 0; i < Raster.WIDTH; i++) {

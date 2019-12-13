@@ -5,16 +5,20 @@
  */
 package org.centrale.pappl.mini.raytracer.graphics;
 
+import org.centrale.pappl.mini.raytracer.RayTracer;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
 import org.centrale.pappl.mini.raytracer.scene.light.Light;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Ray class to create rays
  * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class Ray {
-    //ATTRIBUTES
+    // ATTRIBUTES
     /**
      * Ray's origin
      */
@@ -24,8 +28,10 @@ public class Ray {
      * Ray's direction
      */
     private Vector3 direction;
+
+    private List<Ray> previousRays;
     
-    //CONSTRUCTORS
+    // CONSTRUCTORS
     /**
      * Constructor
      * @param origin
@@ -34,6 +40,17 @@ public class Ray {
     public Ray(Vector3 origin, Vector3 direction){
         this.origin = origin;
         this.direction = direction.normalized();
+        this.previousRays = new ArrayList<>();
+    }
+
+    public Ray(Vector3 origin, Vector3 direction, Ray previousRay) {
+        this.origin = origin;
+        this.direction = direction.normalized();
+        this.previousRays = new ArrayList<>();
+        for (Ray ray : previousRay.getPreviousRays()) {
+            this.previousRays.add(ray);
+        }
+        this.previousRays.add(previousRay);
     }
     
     /**
@@ -42,6 +59,7 @@ public class Ray {
     public Ray(){
         this.origin = new Vector3();
         this.direction = new Vector3();
+        this.previousRays = new ArrayList<>();
     }
 
     
@@ -74,6 +92,14 @@ public class Ray {
         reflectedDirection.subtract(normal.scale(2).scale(normal.dot(intersection)));
         Ray reflection = new Ray(intersection, reflectedDirection);
         return reflection;
+    }
+
+    public int getDepth() {
+        return previousRays.size();
+    }
+
+    public List<Ray> getPreviousRays() {
+        return previousRays;
     }
     
     /**
@@ -114,24 +140,40 @@ public class Ray {
 
         if (closestSceneObject == null) return illumination;
 
-        // Absorption
+        Vector3 intersection = hitRayCastResult.intersection;
+        Vector3 normal = hitRayCastResult.normal;
 
-        //      Ambient light
+        // Absorption
+            // Ambient light
         illumination = closestSceneObject.getColor().multiply(Scene.getScene().getAmbientLight().getLightColor()).scale(closestSceneObject.getMaterial().getKa());
 
-        //      Shadow Rays
+            // Shadow Rays
         for (Light light: Scene.getScene().getLights()) {
-            Vector3 shadowOrigin = new Vector3(hitRayCastResult.intersection.add(hitRayCastResult.normal.scale(0.0000001f)));
+            Vector3 shadowOrigin = new Vector3(intersection).add(normal.scale(RayTracer.EPSILON));
             ShadowRay shadowRay = new ShadowRay(closestSceneObject, light, this, shadowOrigin);
 
-            if (shadowRay.getDirection().dot(hitRayCastResult.normal) >= 0) {
+            if (shadowRay.getDirection().dot(normal) >= 0) {
                 illumination = illumination.add(shadowRay.getIllumination())
                         .clamp()
                 ;
             }
         }
+        illumination = illumination.scale(closestSceneObject.getMaterial().getAbsorbance());
 
         // Reflexion
+        if (closestSceneObject.getMaterial().getReflectance() != 0) { //TODO: Condition on reflection coefficient of the material
+//            System.out.println("" + getDepth());
+            if(getDepth() < RayTracer.maxDepth) {
+                Vector3 reflectedRayOrigin = intersection.add(normal.scale(RayTracer.EPSILON));
+                // R = I−2(N⋅I)N
+                Vector3 reflectedRayDirection = new Vector3(intersection.normalized()).subtract(normal.scale(2 * normal.dot(intersection.normalized())));
+
+                Ray reflectedRay = new Ray(reflectedRayOrigin, reflectedRayDirection, this);
+                illumination = illumination.add(reflectedRay.getIllumination().scale(closestSceneObject.getMaterial().getReflectance()))
+                        .clamp()
+                ;
+            } else return new Vector3();
+        }
 
         // Refraction
 

@@ -25,8 +25,10 @@ import org.centrale.pappl.mini.raytracer.graphics.Vector3;
  */
 public class RayTracer {
 
+    public static int maxDepth = 10;
+    public static final double EPSILON = 0.000000000001f;
+
     RayTracer() {
-//        shortestDistance = Double.MAX_VALUE;
     }
 
     /**
