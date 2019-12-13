@@ -4,11 +4,13 @@ import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 
 public class RayCastResult {
     public Vector3 intersection;
+    public double distance;
     public SceneObject hitObject;
     public Vector3 normal;
     public boolean hit;
 
     public RayCastResult(){
+        this.distance = Double.MAX_VALUE;
         this.hit = false;
     }
 

@@ -90,4 +90,9 @@ public class Vector3 {
     public Vector3 cross(Vector3 vector3){
         return new Vector3(this.y*vector3.z - this.z*vector3.y, this.z*vector3.x - this.x*vector3.z, this.x*vector3.y - this.y*vector3.x);
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + " ," + y + " ," + z + ")";
+    }
 }

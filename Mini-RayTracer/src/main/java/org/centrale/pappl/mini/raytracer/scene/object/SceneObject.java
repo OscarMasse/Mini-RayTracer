@@ -1,15 +1,21 @@
 package org.centrale.pappl.mini.raytracer.scene.object;
 
+import org.centrale.pappl.mini.raytracer.graphics.ShadowRay;
+import org.centrale.pappl.mini.raytracer.scene.object.materials.Material;
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
-import org.centrale.pappl.mini.raytracer.scene.light.Light;
 
 public abstract class SceneObject {
 
     private Vector3 color;
+    private Material material;
 
     public abstract RayCastResult intersect(Ray ray);
+
+    public RayCastResult intersect(ShadowRay shadowRay) {
+        return intersect(new Ray(shadowRay.getOrigin(), shadowRay.getDirection()));
+    }
 
     public abstract Vector3 getNormal(Vector3 position);
 
@@ -19,5 +25,13 @@ public abstract class SceneObject {
 
     public Vector3 getColor() {
         return this.color;
+    }
+
+    public Material getMaterial() {
+        return this.material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 }
