@@ -1,0 +1,16 @@
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/light/Light.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/graphics/RayCastResult.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/Scene.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/Camera.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/object/Sphere.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/object/Box.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/light/PointLight.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/object/TriangleMeshBox.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/Main.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/light/DirectionalLight.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/object/SceneObject.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/graphics/Vector3.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/Raster.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/RayTracer.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/scene/object/Triangle.java
+/Users/skiara/Documents/ECN/EI2/INFO/PAPPL Ray-tracer/Mini-RayTracer/Mini-RayTracer/src/main/java/org/centrale/pappl/mini/raytracer/graphics/Ray.java
