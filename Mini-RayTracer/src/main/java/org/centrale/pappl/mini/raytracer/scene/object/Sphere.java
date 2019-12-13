@@ -5,26 +5,50 @@
  */
 package org.centrale.pappl.mini.raytracer.scene.object;
 
-
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 /**
  *
- * @author skiara
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class Sphere extends SceneObject {
+    
+    //ATTRIBUTES
+    /**
+     * Sphere's center
+     */
     private final Vector3 center;
+    
+    /**
+     * Sphere's radius
+     */
     private final double radius;
+    
+    /**
+     * Square of the sphere's radius
+     */
     private final double radiusSq;
     
+    //CONSTRUCTORS
+    /**
+     *
+     * @param center
+     * @param radius
+     */
     public Sphere(Vector3 center, int radius){
         this.center = center;
         this.radius = radius;
         this.radiusSq = radius*radius;
-}
+    }
     
+    //OTHER METHODS
+    /**
+     * Computes ray's intersection with this sphere
+     * @param ray
+     * @return
+     */
     @Override
     public RayCastResult intersect(Ray ray){
         RayCastResult rayCastResult = new RayCastResult();
@@ -47,13 +71,16 @@ public class Sphere extends SceneObject {
 
         if (mPCSq > radiusSq) return rayCastResult;
 
-//        intersection.set(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)));
-
         rayCastResult.setResult(ray.getDirection().scale(OP.magnitude() - Math.sqrt(radiusSq - mPCSq)), this);
         rayCastResult.hit = true;
         return rayCastResult;
     }
     
+    /**
+     * Computes the normal vector at the position on this object
+     * @param position
+     * @return
+     */
     @Override
     public Vector3 getNormal(Vector3 position){
         return position.subtract(this.center).normalized();

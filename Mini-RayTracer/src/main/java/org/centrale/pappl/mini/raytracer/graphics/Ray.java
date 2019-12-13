@@ -10,8 +10,8 @@ import org.centrale.pappl.mini.raytracer.scene.light.Light;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 
 /**
- *
- * @author skiara
+ * Ray class to create rays
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class Ray {
     //ATTRIBUTES
@@ -46,14 +46,29 @@ public class Ray {
 
     
     //GETTERS AND SETTERS
+
+    /**
+     *
+     * @return
+     */
     public Vector3 getOrigin() {
         return origin;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3 getDirection() {
         return direction;
     }
     
+    /**
+     * Generates the reflected ray from an intersection point and a normal
+     * @param intersection
+     * @param normal
+     * @return
+     */
     public Ray generateReflection(Vector3 intersection, Vector3 normal){
         Vector3 reflectedDirection = new Vector3(intersection);
         reflectedDirection.subtract(normal.scale(2).scale(normal.dot(intersection)));
@@ -61,11 +76,21 @@ public class Ray {
         return reflection;
     }
     
+    /**
+     *
+     * @return
+     */
+    /**
     public Ray generateRefraction (){
         
         return new Ray();
     }
+    */
     
+    /**
+     * Calculates the illumination of the point hit by this ray
+     * @return
+     */
     public Vector3 getIllumination() {
 
         Vector3 illumination = new Vector3();

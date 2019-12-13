@@ -10,15 +10,34 @@ import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 /**
- *
- * @author Sarah Petrocchi @ECN
+ * Triangle class which makes up the mesh of triangles used to compute the TriangleMeshBox
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class Triangle extends SceneObject {
 
+    //ATTRIBUTES
+    /**
+     * First vertex
+     */
     public Vector3 v0;
+
+    /**
+     * Second vertex
+     */
     public Vector3 v1;
+
+    /**
+     * Third vertex
+     */
     public Vector3 v2;
 
+    //CONSTRUCTORS
+    /**
+     *
+     * @param v0
+     * @param v1
+     * @param v2
+     */
     public Triangle(Vector3 v0, Vector3 v1, Vector3 v2) {
         this.v0 = v0;
         this.v1 = v1;
@@ -33,12 +52,23 @@ public class Triangle extends SceneObject {
 
     }
 
+    //OTHER METHODS
+    /**
+     *
+     * @param position
+     * @return
+     */
     public Vector3 getNormal(Vector3 position) {
         Vector3 v0v1 = new Vector3(v1.subtract(v0));
         Vector3 v0v2 = new Vector3(v2.subtract(v0));
         return v0v1.cross(v0v2).normalized();
     }
 
+    /**
+     *
+     * @param ray
+     * @return
+     */
     public RayCastResult intersect(Ray ray) {
         RayCastResult rayCastResult = new RayCastResult();
 

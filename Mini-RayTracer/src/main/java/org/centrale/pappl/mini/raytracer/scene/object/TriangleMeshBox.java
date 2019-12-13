@@ -8,21 +8,58 @@ package org.centrale.pappl.mini.raytracer.scene.object;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
-import org.centrale.pappl.mini.raytracer.scene.Scene;
 
 /**
- *
- * @author Sarah Petrocchi @ECN
+ * Non-Axis Aligned Box made up of a mesh of 12 triangles
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class TriangleMeshBox extends SceneObject {
 
+    //ATTRIBUTES
+    /**
+     * Closest Vertex
+     */
     public Vector3 closeVertex;
+
+    /**
+     * Farthest Vextex
+     */
     public Vector3 farVertex;
+
+    /**
+     * Box' x axis
+     */
     public Vector3 ux;
+
+    /**
+     * Box' y axis
+     */
     public Vector3 uy;
+
+    /**
+     * Box' z axis
+     */
     public Vector3 uz;
+
+    /**
+     * List of all 8 vertices
+     */
     public Vector3[] vertices;
 
+    /**
+     * Triangle that was hit on intersection
+     */
+    public Triangle hitTriangle;
+
+    //CONSTRUCTORS
+    /**
+     *
+     * @param closeVertex
+     * @param farVertex
+     * @param ux
+     * @param uy
+     * @param uz
+     */
     public TriangleMeshBox(Vector3 closeVertex, Vector3 farVertex, Vector3 ux, Vector3 uy, Vector3 uz) {
         this.closeVertex = closeVertex;
         this.farVertex = farVertex;
@@ -31,6 +68,10 @@ public class TriangleMeshBox extends SceneObject {
         this.uz = uz;
     }
 
+    //OTHER METHODS
+    /**
+     * Computes all 8 vertices from both vertices and 3 directional vectors
+     */
     public void computeVertices() {
         this.vertices = new Vector3[8];
         double a = farVertex.x - closeVertex.x;
@@ -46,6 +87,10 @@ public class TriangleMeshBox extends SceneObject {
         vertices[7] = new Vector3(farVertex.add(ux.scale(-a)));
     }
 
+    /**
+     * Computes all triangles in the mesh from the 12 vertices
+     * @return
+     */
     public Triangle[] computeTriangles() {
         Triangle[] triangles = new Triangle[12];
         this.computeVertices();
@@ -67,6 +112,11 @@ public class TriangleMeshBox extends SceneObject {
         return triangles;
     }
 
+    /**
+     * Computes intersection of the ray with this object
+     * @param ray
+     * @return
+     */
     public RayCastResult intersect(Ray ray) {
         RayCastResult hitRayCastResult = new RayCastResult();
 
@@ -85,12 +135,18 @@ public class TriangleMeshBox extends SceneObject {
             }
         }
         if (hitRayCastResult.hit) {
+            this.hitTriangle = ((Triangle) hitRayCastResult.hitObject);
             hitRayCastResult.hitObject = this;
         }
         return hitRayCastResult;
     }
 
+    /**
+     * Computes normal vector for the position on this object
+     * @param position
+     * @return
+     */
     public Vector3 getNormal(Vector3 position) {
-        return null;
+        return this.hitTriangle.getNormal(position);
     }
 }

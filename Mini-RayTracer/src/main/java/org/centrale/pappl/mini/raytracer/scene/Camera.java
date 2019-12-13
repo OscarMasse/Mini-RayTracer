@@ -9,7 +9,7 @@ import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
 /**
  *
- * @author skiara
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class Camera {
 
@@ -42,15 +42,28 @@ public class Camera {
     
     //GETTERS AND SETTERS
 
+    /**
+     *
+     * @return
+     */
+
     public static Camera getCamera() {
         if (camera == null) Camera.camera = new Camera();
         return camera;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3 getPosition() {
         return position;
     }
 
+    /**
+     *
+     * @param position
+     */
     public void setPosition(Vector3 position) {
         this.position = position;
     }

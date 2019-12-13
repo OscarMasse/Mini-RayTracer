@@ -7,16 +7,56 @@ import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.scene.object.materials.Material;
 
+/**
+ * ShadowRay class to compute shadows
+ * @author Oscar Masse & Sarah Petrocchi @ECN
+ */
 public class ShadowRay {
 
+    //ATTRIBUTES
+    /**
+     * Concerned object
+     */
     private final SceneObject sceneObject;
+    
+    /**
+     * Object's material
+     */
     private final Material material;
+    
+    /**
+     * Light for which the shadowray is searching
+     */
     private final Light focusedLight;
+    
+    /**
+     * Incoming Ray
+     */
     private final Ray previousRay;
+    
+    /**
+     * ShadowRay's origin
+     */
     private final Vector3 origin;
+    
+    /**
+     * ShadowRay's direction
+     */
     private final Vector3 direction;
+    
+    /**
+     * Distance between intersection point and light
+     */
     private final double distanceToLight;
 
+    //CONSTRUCTORS
+    /**
+     *
+     * @param sceneObject
+     * @param focusedLight
+     * @param ray
+     * @param origin
+     */
     public ShadowRay(SceneObject sceneObject, Light focusedLight, Ray ray, Vector3 origin) {
         this.sceneObject = sceneObject;
         this.material = sceneObject.getMaterial();
@@ -36,12 +76,17 @@ public class ShadowRay {
         this.direction = direction.normalized();
     }
 
+    //GETTERS AND SETTERS
+    /**
+     *
+     * @return
+     */
     public Vector3 getIllumination() {
 
         // Detection of the closest hit object
         RayCastResult rayCastResult;
         for (SceneObject object : Scene.getScene().getSceneObjects()) {
-            System.out.println("sceneObject = " + object);
+            //System.out.println("sceneObject = " + object);
             rayCastResult = object.intersect(this);
             if (rayCastResult.hit) {
                 double objectDistance = rayCastResult.intersection.subtract(origin).magnitude();
@@ -50,7 +95,7 @@ public class ShadowRay {
 //                    System.out.println("distanceToLight = " + distanceToLight);
 //                    System.out.println("Shadow ray hit!");
 //                    System.out.println(this.direction);
-                    if (!rayCastResult.hitObject.equals(object)) System.out.println("Hit someone else");
+                    if (rayCastResult.hitObject.equals(object)) System.out.println("Hit itself");
                     return new Vector3();
                 }
             }
@@ -86,10 +131,18 @@ public class ShadowRay {
         return illumination;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3 getOrigin() {
         return this.origin;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3 getDirection() {
         return this.direction;
     }

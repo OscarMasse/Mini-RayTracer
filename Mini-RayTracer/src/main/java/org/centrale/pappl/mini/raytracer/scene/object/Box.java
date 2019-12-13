@@ -6,46 +6,76 @@
 package org.centrale.pappl.mini.raytracer.scene.object;
 
 import java.util.ArrayList;
-
-import org.centrale.pappl.mini.raytracer.graphics.ShadowRay;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
 import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
 
 /**
- *
- * @author skiara
+ * Axis Aligned Box: Obsolete since TriangleMeshBox was created
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class Box extends SceneObject {
 
+    //ATTRIBUTES
+    /**
+     * Box' list of bounds: 2 vertices, closest, vmin, and farthest, vmax
+     */
     private ArrayList<Vector3> bounds;
     
-
+    //CONSTRUCTORS
+    /**
+     *
+     */
     public Box() {
         this.bounds = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param vmin
+     * @param vmax
+     */
     public Box(Vector3 vmin, Vector3 vmax) {
         this();
         this.bounds.add(vmin);
         this.bounds.add(vmax);
     }
 
+    //GETTERS AND SETTERS
+    /**
+     *
+     * @return
+     */
     public ArrayList<Vector3> getBounds() {
         return bounds;
     }
 
+    /**
+     *
+     * @param bounds
+     */
     public void setBounds(ArrayList<Vector3> bounds) {
         this.bounds = bounds;
     }
 
+    //OTHER METHODS
+    /**
+     * Swaps two floats
+     * @param a
+     * @param b
+     */
     public void swap(float a, float b) {
         float c = a;
         a = b;
         b = c;
     }
 
+    /**
+     * Finds the result of raycasting the ray onto this box
+     * @param ray
+     * @return
+     */
     @Override
     public RayCastResult intersect(Ray ray) {
         RayCastResult rayCastResult = new RayCastResult();
@@ -105,6 +135,11 @@ public class Box extends SceneObject {
         return rayCastResult;
     }
 
+    /**
+     * Computes the normal vector considering the intersection point on the box
+     * @param position
+     * @return
+     */
     @Override
     public Vector3 getNormal(Vector3 position) {
         Vector3 normal = new Vector3();

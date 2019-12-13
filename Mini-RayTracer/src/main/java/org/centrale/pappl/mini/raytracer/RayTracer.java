@@ -7,21 +7,21 @@ package org.centrale.pappl.mini.raytracer;
 
 import org.centrale.pappl.mini.raytracer.scene.Raster;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
-import org.centrale.pappl.mini.raytracer.scene.light.Light;
-import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
+//import org.centrale.pappl.mini.raytracer.scene.light.Light;
+//import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.graphics.Ray;
-import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
+//import org.centrale.pappl.mini.raytracer.graphics.RayCastResult;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
-import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
-import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
-import org.centrale.pappl.mini.raytracer.scene.object.materials.Material;
+//import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
+//import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
+//import org.centrale.pappl.mini.raytracer.scene.object.materials.Material;
 
 /**
- *
- * @author skiara
+ * RayTracer class for trace function
+ * @author Oscar Masse & Sarah Petrocchi @ECN
  */
 public class RayTracer {
 
@@ -29,6 +29,12 @@ public class RayTracer {
 //        shortestDistance = Double.MAX_VALUE;
     }
 
+    /**
+     * Trace function
+     * @param raster
+     * @param i
+     * @param j
+     */
     public void trace(Raster raster, int i, int j) {
 
 //        SceneObject closestSceneObject = null;
