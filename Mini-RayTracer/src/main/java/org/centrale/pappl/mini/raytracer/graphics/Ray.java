@@ -121,11 +121,14 @@ public class Ray {
 
         //      Shadow Rays
         for (Light light: Scene.getScene().getLights()) {
-            Vector3 shadowOrigin = new Vector3(hitRayCastResult.intersection);
+            Vector3 shadowOrigin = new Vector3(hitRayCastResult.intersection.add(hitRayCastResult.normal.scale(0.0000001f)));
+            ShadowRay shadowRay = new ShadowRay(closestSceneObject, light, this, shadowOrigin);
 
-            illumination = illumination.add(new ShadowRay(closestSceneObject, light, this, shadowOrigin).getIllumination())
-                    .clamp()
-                    ;
+            if (shadowRay.getDirection().dot(hitRayCastResult.normal) >= 0) {
+                illumination = illumination.add(shadowRay.getIllumination())
+                        .clamp()
+                ;
+            }
         }
 
         // Reflexion

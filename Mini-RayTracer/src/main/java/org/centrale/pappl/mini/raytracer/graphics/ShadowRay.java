@@ -74,6 +74,8 @@ public class ShadowRay {
             distanceToLight = Double.MAX_VALUE;
         }
         this.direction = direction.normalized();
+//        System.out.println(direction);
+//        System.out.println("distanceToLight = " + distanceToLight);
     }
 
     //GETTERS AND SETTERS
@@ -88,14 +90,16 @@ public class ShadowRay {
         for (SceneObject object : Scene.getScene().getSceneObjects()) {
             //System.out.println("sceneObject = " + object);
             rayCastResult = object.intersect(this);
-            if (rayCastResult.hit) {
-                double objectDistance = rayCastResult.intersection.subtract(origin).magnitude();
+            System.out.println(rayCastResult.hit);
+            if (rayCastResult.hit && !sceneObject.equals(rayCastResult.hitObject)) {
+                double objectDistance = rayCastResult.intersection.magnitude();
+                System.out.println("Shadow ray hit!");
+//                System.out.println(objectDistance + " " + distanceToLight);
                 if (objectDistance < distanceToLight) {
 //                    System.out.println("objectDistance = " + objectDistance);
 //                    System.out.println("distanceToLight = " + distanceToLight);
-//                    System.out.println("Shadow ray hit!");
 //                    System.out.println(this.direction);
-                    if (rayCastResult.hitObject.equals(object)) System.out.println("Hit itself");
+//                    if (rayCastResult.hitObject.equals(object)) System.out.println("Hit itself");
                     return new Vector3();
                 }
             }

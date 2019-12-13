@@ -5,11 +5,13 @@
  */
 package org.centrale.pappl.mini.raytracer;
 
+import org.centrale.pappl.mini.raytracer.graphics.Vector3;
 import org.centrale.pappl.mini.raytracer.scene.Camera;
 import org.centrale.pappl.mini.raytracer.scene.Raster;
 import org.centrale.pappl.mini.raytracer.scene.Scene;
 import org.centrale.pappl.mini.raytracer.scene.light.AmbientLight;
 import org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight;
+import org.centrale.pappl.mini.raytracer.scene.light.PointLight;
 import org.centrale.pappl.mini.raytracer.scene.object.SceneObject;
 import org.centrale.pappl.mini.raytracer.scene.object.Sphere;
 import org.centrale.pappl.mini.raytracer.graphics.Vector3;
@@ -39,21 +41,23 @@ public class Main {
 
         RayTracer rayTracer = new RayTracer();
 
-        // Fill objects
-        
+        // Fill objects 
         Material material1 = new Material(0.3, 1, 1, 1);
         Material material2 = new Material(0.3, 0.3, 1, 1);
         
-        SceneObject sceneObject2 = new Sphere(new Vector3(400, 0, -1500), 300);
+
+        SceneObject sceneObject2 = new Sphere(new Vector3(400, 0, -1300), 300);
         sceneObject2.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
         sceneObject2.setMaterial(material2);
         scene.addObject(sceneObject2);
 
-        SceneObject sceneObject3 = new Sphere(new Vector3(500, 100, -1100), 50);
+
+        SceneObject sceneObject3 = new Sphere(new Vector3(-50, 0, -1300), 50);
         sceneObject3.setColor(new Vector3((float) 0x6a / 0xFF, (float) 0x40 / 0xFF, (float) 0x9B / 0xFF));
         //sceneObject3.setColor(new Vector3(0, 0.9, 0.9)); // Bug: interaction avec lumière ambiente
         sceneObject3.setMaterial(material2);
         scene.addObject(sceneObject3);
+
 
         SceneObject sceneObject5 = new TriangleMeshBox(new Vector3(-700, 200, -1300), new Vector3(-100, 400, -2000), new Vector3(1, -1, 0).normalized(), new Vector3(1, 1, 0).normalized(), Scene.UZ);
         sceneObject5.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
@@ -74,7 +78,7 @@ public class Main {
         //scene.addLight(dLight1);
         
         DirectionalLight dLight2 = new DirectionalLight(new Vector3(1, 1, -1), new Vector3(Color.white), 2);
-//        scene.addLight(dLight2);
+        //scene.addLight(dLight2);
 
         PointLight pLight1 = new PointLight(new Vector3(Color.white), 1, new Vector3(300, 0, -1000));
         scene.addLight(pLight1);
@@ -82,9 +86,10 @@ public class Main {
         PointLight pLight2 = new PointLight(new Vector3(Color.white), 1, new Vector3(-600, 400, -1400));
         scene.addLight(pLight2);
 
+
         // For each pixel in raster
-        for (int i = 0; i < Raster.WIDTH; i++){
-            for (int j = 0; j < Raster.HEIGHT; j++){
+        for (int i = 0; i < Raster.WIDTH; i++) {
+            for (int j = 0; j < Raster.HEIGHT; j++) {
                 rayTracer.trace(raster, i, j);
             }
         }
