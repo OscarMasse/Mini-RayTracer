@@ -90,16 +90,9 @@ public class ShadowRay {
         for (SceneObject object : Scene.getScene().getSceneObjects()) {
             //System.out.println("sceneObject = " + object);
             rayCastResult = object.intersect(this);
-            System.out.println(rayCastResult.hit);
             if (rayCastResult.hit && !sceneObject.equals(rayCastResult.hitObject)) {
                 double objectDistance = rayCastResult.intersection.magnitude();
-                System.out.println("Shadow ray hit!");
-//                System.out.println(objectDistance + " " + distanceToLight);
                 if (objectDistance < distanceToLight) {
-//                    System.out.println("objectDistance = " + objectDistance);
-//                    System.out.println("distanceToLight = " + distanceToLight);
-//                    System.out.println(this.direction);
-//                    if (rayCastResult.hitObject.equals(object)) System.out.println("Hit itself");
                     return new Vector3();
                 }
             }
