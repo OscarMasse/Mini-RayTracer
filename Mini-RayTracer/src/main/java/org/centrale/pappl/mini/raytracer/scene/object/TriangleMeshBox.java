@@ -56,16 +56,17 @@ public class TriangleMeshBox extends SceneObject {
      *
      * @param closeVertex
      * @param farVertex
-     * @param ux
-     * @param uy
-     * @param uz
+     * @param angle
+     * @param axe
      */
-    public TriangleMeshBox(Vector3 closeVertex, Vector3 farVertex, Vector3 ux, Vector3 uy, Vector3 uz) {
+    public TriangleMeshBox(Vector3 closeVertex, Vector3 farVertex, double angle, String axe) {
         this.closeVertex = closeVertex;
         this.farVertex = farVertex;
-        this.ux = ux;
-        this.uy = uy;
-        this.uz = uz;
+        Vector3[] axes = new Vector3[3];
+        axes = rotate(angle, axe);
+        this.ux = axes[0];
+        this.uy = axes[1];
+        this.uz = axes[2];
     }
 
     //OTHER METHODS
@@ -148,5 +149,33 @@ public class TriangleMeshBox extends SceneObject {
      */
     public Vector3 getNormal(Vector3 position) {
         return this.hitTriangle.getNormal(position);
+    }
+    
+    /**
+     * Computes this object's main axes thanks to an angle in radius and a rotation axis
+     * @param angle
+     * @param axe
+     * @return 
+     */
+    public Vector3[] rotate (double angle, String axe){
+        Vector3[] vectors = new Vector3[3];
+        switch (axe){
+            case "x":
+                vectors [0] = new Vector3(1,0,0);
+                vectors [1] = new Vector3(0, Math.cos(angle), Math.sin(angle)).normalized();
+                vectors [2] = new Vector3(0, -Math.sin(angle), Math.cos(angle)).normalized();
+                break;
+            case "y":
+                vectors [0] = new Vector3(Math.cos(angle), 0, -Math.sin(angle)).normalized();
+                vectors [1] = new Vector3(0, 1, 0);
+                vectors [2] = new Vector3(Math.sin(angle), 0, Math.cos(angle)).normalized();
+                break;
+            case "z":
+                vectors [0] = new Vector3(Math.cos(angle), Math.sin(angle), 0).normalized();
+                vectors [1] = new Vector3(-Math.sin(angle), Math.cos(angle), 0).normalized();
+                vectors [2] = new Vector3(0, 0, 1);
+                break;
+        }
+        return vectors;
     }
 }

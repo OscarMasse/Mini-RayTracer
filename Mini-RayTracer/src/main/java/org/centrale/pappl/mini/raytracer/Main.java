@@ -57,12 +57,12 @@ public class Main {
         //scene.addObject(sceneObject3);
 
 
-        SceneObject sceneObject5 = new TriangleMeshBox(new Vector3(-100, 0, -1300), new Vector3(-700, -200, -1500), new Vector3(1,-1,0).normalized(), new Vector3(1,1,0).normalized(), Scene.UZ);
+        SceneObject sceneObject5 = new TriangleMeshBox(new Vector3(-100, 0, -1300), new Vector3(-700, -200, -1500), Math.PI/4, "x");
         sceneObject5.setColor(new Vector3((float) 0x73 / 0xFF, (float) 0xab / 0xFF, (float) 0x63 / 0xFF));
         sceneObject5.setMaterial(material2);
         scene.addObject(sceneObject5);
 
-        SceneObject sceneObject6 = new TriangleMeshBox(new Vector3(-400, -200,-1200), new Vector3(-700, -400, -1500), Scene.UX, Scene.UY, Scene.UZ);
+        SceneObject sceneObject6 = new TriangleMeshBox(new Vector3(-400, -200,-1200), new Vector3(-700, -400, -1500), 0, "x");
         sceneObject6.setColor(new Vector3((float) 0x9F / 0xFF, (float) 0x3C / 0xFF, (float) 0x33 / 0xFF));
         sceneObject6.setMaterial(material2);
         //scene.addObject(sceneObject6);
