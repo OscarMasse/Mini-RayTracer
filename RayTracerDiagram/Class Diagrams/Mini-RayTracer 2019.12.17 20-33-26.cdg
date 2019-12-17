@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Mini-RayTracer">
+  <ClassDiagramComponents>
+    <Class name="RayTracer" package="org.centrale.pappl.mini.raytracer" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package"/>
+      </Constructors>
+      <Methods>
+        <Method name="trace" returnType="void" visibility="public">
+          <Argument type="Raster" name="raster"/>
+          <Argument type="int" name="i"/>
+          <Argument type="int" name="j"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="org.centrale.pappl.mini.raytracer" visibility="public" xPosition="36.0" yPosition="232.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Raster" package="org.centrale.pappl.mini.raytracer.scene" visibility="public" xPosition="280.0" yPosition="20.0">
+      <Fields>
+        <Field name="origin" type="Vector3" visibility="private"/>
+        <Field name="ux" type="Vector3" visibility="private"/>
+        <Field name="uy" type="Vector3" visibility="private"/>
+        <Field name="pixels" type="Vector3[][]" visibility="private"/>
+        <Field name="HEIGHT" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="WIDTH" type="int" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="origin"/>
+          <Argument type="Vector3" name="ux"/>
+          <Argument type="Vector3" name="uy"/>
+          <Argument type="Vector3[][]" name="pixels"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getOrigin" returnType="Vector3" visibility="public"/>
+        <Method name="setOrigin" returnType="void" visibility="public">
+          <Argument type="Vector3" name="origin"/>
+        </Method>
+        <Method name="getUx" returnType="Vector3" visibility="public"/>
+        <Method name="setUx" returnType="void" visibility="public">
+          <Argument type="Vector3" name="ux"/>
+        </Method>
+        <Method name="getUy" returnType="Vector3" visibility="public"/>
+        <Method name="setUy" returnType="void" visibility="public">
+          <Argument type="Vector3" name="uy"/>
+        </Method>
+        <Method name="getPixels" returnType="Vector3[][]" visibility="public"/>
+        <Method name="colorize" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+          <Argument type="int" name="j"/>
+          <Argument type="Vector3" name="color"/>
+        </Method>
+        <Method name="print" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Scene" package="org.centrale.pappl.mini.raytracer.scene" visibility="public" xPosition="723.0" yPosition="20.0">
+      <Fields>
+        <Field name="scene" type="Scene" visibility="private" isStatic="true"/>
+        <Field name="sceneObjects" type="ArrayList&lt;SceneObject&gt;" visibility="private"/>
+        <Field name="lights" type="ArrayList&lt;Light&gt;" visibility="private"/>
+        <Field name="camera" type="Camera" visibility="private"/>
+        <Field name="raster" type="Raster" visibility="private"/>
+        <Field name="ambientLight" type="AmbientLight" visibility="private"/>
+        <Field name="UX" type="Vector3" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="UY" type="Vector3" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="UZ" type="Vector3" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getScene" returnType="Scene" visibility="public" isStatic="true"/>
+        <Method name="getSceneObjects" returnType="ArrayList&lt;SceneObject&gt;" visibility="public"/>
+        <Method name="setSceneObjects" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;SceneObject&gt;" name="sceneObjects"/>
+        </Method>
+        <Method name="getLights" returnType="ArrayList&lt;Light&gt;" visibility="public"/>
+        <Method name="setLights" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Light&gt;" name="lights"/>
+        </Method>
+        <Method name="getCamera" returnType="Camera" visibility="public"/>
+        <Method name="setCamera" returnType="void" visibility="public">
+          <Argument type="Camera" name="camera"/>
+        </Method>
+        <Method name="getRaster" returnType="Raster" visibility="public"/>
+        <Method name="setRaster" returnType="void" visibility="public">
+          <Argument type="Raster" name="raster"/>
+        </Method>
+        <Method name="addObject" returnType="void" visibility="public">
+          <Argument type="SceneObject" name="sceneObject"/>
+        </Method>
+        <Method name="addLight" returnType="void" visibility="public">
+          <Argument type="Light" name="light"/>
+        </Method>
+        <Method name="getAmbientLight" returnType="Light" visibility="public"/>
+        <Method name="setAmbientLight" returnType="void" visibility="public">
+          <Argument type="AmbientLight" name="ambientLight"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Material" package="org.centrale.pappl.mini.raytracer.scene.object.materials" visibility="public" xPosition="424.0" yPosition="925.0">
+      <Fields>
+        <Field name="ks" type="double" visibility="private"/>
+        <Field name="kd" type="double" visibility="private"/>
+        <Field name="ka" type="double" visibility="private"/>
+        <Field name="alpha" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="double" name="ks"/>
+          <Argument type="double" name="kd"/>
+          <Argument type="double" name="ka"/>
+          <Argument type="double" name="alpha"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getKs" returnType="double" visibility="public"/>
+        <Method name="getKd" returnType="double" visibility="public"/>
+        <Method name="getKa" returnType="double" visibility="public"/>
+        <Method name="getAlpha" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TriangleMeshBox" package="org.centrale.pappl.mini.raytracer.scene.object" visibility="public" xPosition="1589.0" yPosition="363.0">
+      <Fields>
+        <Field name="closeVertex" type="Vector3" visibility="public"/>
+        <Field name="farVertex" type="Vector3" visibility="public"/>
+        <Field name="ux" type="Vector3" visibility="public"/>
+        <Field name="uy" type="Vector3" visibility="public"/>
+        <Field name="uz" type="Vector3" visibility="public"/>
+        <Field name="vertices" type="Vector3[]" visibility="public"/>
+        <Field name="hitTriangle" type="Triangle" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="closeVertex"/>
+          <Argument type="Vector3" name="farVertex"/>
+          <Argument type="double" name="angle"/>
+          <Argument type="String" name="axe"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="computeVertices" returnType="void" visibility="public"/>
+        <Method name="computeTriangles" returnType="Triangle[]" visibility="public"/>
+        <Method name="intersect" returnType="RayCastResult" visibility="public">
+          <Argument type="Ray" name="ray"/>
+        </Method>
+        <Method name="getNormal" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="position"/>
+        </Method>
+        <Method name="rotate" returnType="Vector3[]" visibility="public">
+          <Argument type="double" name="angle"/>
+          <Argument type="String" name="axe"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Triangle" package="org.centrale.pappl.mini.raytracer.scene.object" visibility="public" xPosition="1904.0" yPosition="133.0">
+      <Fields>
+        <Field name="v0" type="Vector3" visibility="public"/>
+        <Field name="v1" type="Vector3" visibility="public"/>
+        <Field name="v2" type="Vector3" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="v0"/>
+          <Argument type="Vector3" name="v1"/>
+          <Argument type="Vector3" name="v2"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNormal" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="position"/>
+        </Method>
+        <Method name="intersect" returnType="RayCastResult" visibility="public">
+          <Argument type="Ray" name="ray"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SceneObject" package="org.centrale.pappl.mini.raytracer.scene.object" visibility="public" isAbstract="true" xPosition="1532.0" yPosition="52.0">
+      <Fields>
+        <Field name="color" type="Vector3" visibility="private"/>
+        <Field name="material" type="Material" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setColor" returnType="void" visibility="public">
+          <Argument type="Vector3" name="color"/>
+        </Method>
+        <Method name="getColor" returnType="Vector3" visibility="public"/>
+        <Method name="getMaterial" returnType="Material" visibility="public"/>
+        <Method name="setMaterial" returnType="void" visibility="public">
+          <Argument type="Material" name="material"/>
+        </Method>
+        <Method name="intersect" returnType="RayCastResult" visibility="public" isAbstract="true">
+          <Argument type="Ray" name="ray"/>
+        </Method>
+        <Method name="intersect" returnType="RayCastResult" visibility="public">
+          <Argument type="ShadowRay" name="shadowRay"/>
+        </Method>
+        <Method name="getNormal" returnType="Vector3" visibility="public" isAbstract="true">
+          <Argument type="Vector3" name="position"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sphere" package="org.centrale.pappl.mini.raytracer.scene.object" visibility="public" xPosition="1167.0" yPosition="35.0">
+      <Fields>
+        <Field name="center" type="Vector3" visibility="private" isFinal="true"/>
+        <Field name="radius" type="double" visibility="private" isFinal="true"/>
+        <Field name="radiusSq" type="double" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="center"/>
+          <Argument type="int" name="radius"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="intersect" returnType="RayCastResult" visibility="public">
+          <Argument type="Ray" name="ray"/>
+        </Method>
+        <Method name="getNormal" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="position"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Box" package="org.centrale.pappl.mini.raytracer.scene.object" visibility="public" xPosition="1196.0" yPosition="282.0">
+      <Fields>
+        <Field name="bounds" type="ArrayList&lt;Vector3&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="vmin"/>
+          <Argument type="Vector3" name="vmax"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getBounds" returnType="ArrayList&lt;Vector3&gt;" visibility="public"/>
+        <Method name="setBounds" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Vector3&gt;" name="bounds"/>
+        </Method>
+        <Method name="swap" returnType="void" visibility="public">
+          <Argument type="float" name="a"/>
+          <Argument type="float" name="b"/>
+        </Method>
+        <Method name="intersect" returnType="RayCastResult" visibility="public">
+          <Argument type="Ray" name="ray"/>
+        </Method>
+        <Method name="getNormal" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="position"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DirectionalLight" package="org.centrale.pappl.mini.raytracer.scene.light" visibility="public" xPosition="852.0" yPosition="887.0">
+      <Fields>
+        <Field name="direction" type="Vector3" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="direction"/>
+          <Argument type="Vector3" name="lightColor"/>
+          <Argument type="double" name="intensity"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDirection" returnType="Vector3" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PointLight" package="org.centrale.pappl.mini.raytracer.scene.light" visibility="public" xPosition="1141.0" yPosition="1036.0">
+      <Fields>
+        <Field name="position" type="Vector3" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="lightColor"/>
+          <Argument type="double" name="intensity"/>
+          <Argument type="Vector3" name="position"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPosition" returnType="Vector3" visibility="public"/>
+        <Method name="getDirection" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="intersection"/>
+        </Method>
+        <Method name="getIntensity" returnType="double" visibility="public">
+          <Argument type="Vector3" name="point"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AmbientLight" package="org.centrale.pappl.mini.raytracer.scene.light" visibility="public" xPosition="1383.0" yPosition="879.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="lightColor"/>
+          <Argument type="double" name="intensity"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Light" package="org.centrale.pappl.mini.raytracer.scene.light" visibility="public" isAbstract="true" xPosition="1141.0" yPosition="558.0">
+      <Fields>
+        <Field name="lightColor" type="Vector3" visibility="private"/>
+        <Field name="intensity" type="double" visibility="private"/>
+        <Field name="id" type="Vector3" visibility="private"/>
+        <Field name="is" type="Vector3" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected">
+          <Argument type="Vector3" name="lightColor"/>
+          <Argument type="double" name="intensity"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLightColor" returnType="Vector3" visibility="public"/>
+        <Method name="getIntensity" returnType="double" visibility="public"/>
+        <Method name="setIntensity" returnType="void" visibility="public">
+          <Argument type="double" name="newIntensity"/>
+        </Method>
+        <Method name="getId" returnType="Vector3" visibility="public"/>
+        <Method name="getIs" returnType="Vector3" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Camera" package="org.centrale.pappl.mini.raytracer.scene" visibility="public" xPosition="319.0" yPosition="689.0">
+      <Fields>
+        <Field name="camera" type="Camera" visibility="private" isStatic="true"/>
+        <Field name="position" type="Vector3" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="position"/>
+        </Constructor>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCamera" returnType="Camera" visibility="public" isStatic="true"/>
+        <Method name="getPosition" returnType="Vector3" visibility="public"/>
+        <Method name="setPosition" returnType="void" visibility="public">
+          <Argument type="Vector3" name="position"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ShadowRay" package="org.centrale.pappl.mini.raytracer.graphics" visibility="public" xPosition="1785.0" yPosition="770.0">
+      <Fields>
+        <Field name="sceneObject" type="SceneObject" visibility="private" isFinal="true"/>
+        <Field name="material" type="Material" visibility="private" isFinal="true"/>
+        <Field name="focusedLight" type="Light" visibility="private" isFinal="true"/>
+        <Field name="previousRay" type="Ray" visibility="private" isFinal="true"/>
+        <Field name="origin" type="Vector3" visibility="private" isFinal="true"/>
+        <Field name="direction" type="Vector3" visibility="private" isFinal="true"/>
+        <Field name="distanceToLight" type="double" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SceneObject" name="sceneObject"/>
+          <Argument type="Light" name="focusedLight"/>
+          <Argument type="Ray" name="ray"/>
+          <Argument type="Vector3" name="origin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIllumination" returnType="Vector3" visibility="public"/>
+        <Method name="getOrigin" returnType="Vector3" visibility="public"/>
+        <Method name="getDirection" returnType="Vector3" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="RayCastResult" package="org.centrale.pappl.mini.raytracer.graphics" visibility="public" xPosition="597.0" yPosition="533.0">
+      <Fields>
+        <Field name="intersection" type="Vector3" visibility="public"/>
+        <Field name="distance" type="double" visibility="public"/>
+        <Field name="hitObject" type="SceneObject" visibility="public"/>
+        <Field name="normal" type="Vector3" visibility="public"/>
+        <Field name="hit" type="boolean" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="intersection"/>
+          <Argument type="SceneObject" name="hitObject"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setResult" returnType="void" visibility="public">
+          <Argument type="Vector3" name="intersection"/>
+          <Argument type="SceneObject" name="hitObject"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Ray" package="org.centrale.pappl.mini.raytracer.graphics" visibility="public" xPosition="20.0" yPosition="433.0">
+      <Fields>
+        <Field name="origin" type="Vector3" visibility="private"/>
+        <Field name="direction" type="Vector3" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="origin"/>
+          <Argument type="Vector3" name="direction"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getOrigin" returnType="Vector3" visibility="public"/>
+        <Method name="getDirection" returnType="Vector3" visibility="public"/>
+        <Method name="generateReflection" returnType="Ray" visibility="public">
+          <Argument type="Vector3" name="intersection"/>
+          <Argument type="Vector3" name="normal"/>
+        </Method>
+        <Method name="getIllumination" returnType="Vector3" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Vector3" package="org.centrale.pappl.mini.raytracer.graphics" visibility="public" xPosition="20.0" yPosition="689.0">
+      <Fields>
+        <Field name="x" type="double" visibility="public"/>
+        <Field name="y" type="double" visibility="public"/>
+        <Field name="z" type="double" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="double" name="x"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="double" name="x"/>
+          <Argument type="double" name="y"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="double" name="x"/>
+          <Argument type="double" name="y"/>
+          <Argument type="double" name="z"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Vector3" name="vector3"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Color" name="color"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="vector3"/>
+        </Method>
+        <Method name="subtract" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="vector3"/>
+        </Method>
+        <Method name="normalized" returnType="Vector3" visibility="public"/>
+        <Method name="dot" returnType="double" visibility="public">
+          <Argument type="Vector3" name="vector3"/>
+        </Method>
+        <Method name="cross" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="vector3"/>
+        </Method>
+        <Method name="scale" returnType="Vector3" visibility="public">
+          <Argument type="double" name="d"/>
+        </Method>
+        <Method name="multiply" returnType="Vector3" visibility="public">
+          <Argument type="Vector3" name="vector"/>
+        </Method>
+        <Method name="isNullVector" returnType="boolean" visibility="public"/>
+        <Method name="magnitude" returnType="double" visibility="public"/>
+        <Method name="magnitudeSq" returnType="double" visibility="public"/>
+        <Method name="clamp" returnType="Vector3" visibility="public"/>
+        <Method name="toRGB" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.light.AmbientLight" target="org.centrale.pappl.mini.raytracer.scene.light.Light"/>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.object.Sphere" target="org.centrale.pappl.mini.raytracer.scene.object.SceneObject"/>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.object.Box" target="org.centrale.pappl.mini.raytracer.scene.object.SceneObject"/>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.object.Triangle" target="org.centrale.pappl.mini.raytracer.scene.object.SceneObject"/>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.light.DirectionalLight" target="org.centrale.pappl.mini.raytracer.scene.light.Light"/>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.object.TriangleMeshBox" target="org.centrale.pappl.mini.raytracer.scene.object.SceneObject"/>
+    <IsRelation name="is" source="org.centrale.pappl.mini.raytracer.scene.light.PointLight" target="org.centrale.pappl.mini.raytracer.scene.light.Light"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
